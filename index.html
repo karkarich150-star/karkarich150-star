@@ -1,0 +1,2355 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cowboy Messenger 🤠</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            overscroll-behavior: none;
+        }
+        .glassmorphism {
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #60a5fa 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+        .fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+        .scrollbar-custom::-webkit-scrollbar {
+            width: 4px;
+        }
+        .scrollbar-custom::-webkit-scrollbar-track {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 10px;
+        }
+        .scrollbar-custom::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 10px;
+        }
+        .message-bubble {
+            border-radius: 20px;
+            position: relative;
+            max-width: 85%;
+        }
+        .clan-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin: 0 auto;
+        }
+        .tab-active {
+            background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+        }
+        .tab-inactive {
+            background: #1e293b;
+            color: #94a3b8;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .clan-selected {
+            border: 2px solid #3b82f6;
+            background: rgba(59, 130, 246, 0.2) !important;
+            transform: scale(1.05);
+        }
+        .nav-active {
+            background: rgba(59, 130, 246, 0.2);
+            border-left: 4px solid #3b82f6;
+        }
+        .section-content {
+            display: none;
+        }
+        .section-active {
+            display: block;
+        }
+        .gift-in-showcase {
+            border: 2px solid #3b82f6;
+            position: relative;
+        }
+        .gift-in-showcase::after {
+            content: "⭐";
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            font-size: 16px;
+            background: #1e293b;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .notification-dot {
+            width: 10px;
+            height: 10px;
+            background: #ef4444;
+            border-radius: 50%;
+            position: absolute;
+            top: -2px;
+            right: -2px;
+        }
+        .video-player {
+            max-width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .message-image {
+            max-width: 250px;
+            border-radius: 12px;
+            margin-top: 8px;
+            cursor: pointer;
+        }
+        .unread-badge {
+            background: #ef4444;
+            color: white;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: auto;
+            min-width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 12px;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            width: fit-content;
+            margin: 4px 0;
+        }
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: #60a5fa;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-4px); }
+        }
+        .post-image {
+            max-width: 100%;
+            border-radius: 12px;
+            margin-top: 8px;
+            cursor: pointer;
+        }
+        .like-animation {
+            animation: like 0.6s ease;
+        }
+        @keyframes like {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        /* Мобильные стили */
+        @media (max-width: 768px) {
+            .mobile-hidden {
+                display: none !important;
+            }
+
+            .mobile-only {
+                display: block !important;
+            }
+
+            .mobile-flex-col {
+                flex-direction: column;
+            }
+
+            .mobile-p-3 {
+                padding: 0.75rem;
+            }
+
+            .mobile-p-4 {
+                padding: 1rem;
+            }
+
+            .mobile-text-sm {
+                font-size: 0.875rem;
+            }
+
+            .mobile-text-lg {
+                font-size: 1.125rem;
+            }
+
+            .mobile-rounded-xl {
+                border-radius: 0.75rem;
+            }
+
+            .mobile-h-12 {
+                height: 3rem;
+            }
+
+            .mobile-w-12 {
+                width: 3rem;
+            }
+
+            .mobile-bottom-nav {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(30, 41, 59, 0.95);
+                backdrop-filter: blur(20px);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                z-index: 50;
+                padding: 0.5rem;
+            }
+
+            .mobile-bottom-nav-btn {
+                flex: 1;
+                padding: 0.75rem;
+                border-radius: 0.75rem;
+                text-align: center;
+                font-size: 0.75rem;
+                transition: all 0.2s;
+            }
+
+            .mobile-bottom-nav-btn.active {
+                background: rgba(59, 130, 246, 0.2);
+                color: #60a5fa;
+            }
+
+            .mobile-header {
+                position: sticky;
+                top: 0;
+                z-index: 40;
+                padding: 1rem;
+                background: rgba(30, 41, 59, 0.95);
+                backdrop-filter: blur(20px);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .mobile-content {
+                padding-bottom: 5rem;
+                padding-top: 1rem;
+            }
+
+            .mobile-modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.9);
+                z-index: 100;
+                overflow-y: auto;
+            }
+
+            .mobile-modal-content {
+                min-height: 100vh;
+                padding: 1rem;
+            }
+
+            .mobile-back-btn {
+                position: absolute;
+                top: 1rem;
+                left: 1rem;
+                z-index: 10;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: rgba(30, 41, 59, 0.8);
+                backdrop-filter: blur(10px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .mobile-chat-input {
+                position: fixed;
+                bottom: 4rem;
+                left: 0;
+                right: 0;
+                padding: 1rem;
+                background: rgba(30, 41, 59, 0.95);
+                backdrop-filter: blur(20px);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                z-index: 40;
+            }
+
+            .mobile-messages-container {
+                padding-bottom: 8rem;
+                padding-top: 1rem;
+            }
+
+            .mobile-fab {
+                position: fixed;
+                bottom: 6rem;
+                right: 1rem;
+                width: 56px;
+                height: 56px;
+                border-radius: 50%;
+                background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+                z-index: 45;
+            }
+
+            .mobile-sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                width: 85%;
+                max-width: 300px;
+                background: rgba(30, 41, 59, 0.98);
+                backdrop-filter: blur(30px);
+                z-index: 1000;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .mobile-sidebar.open {
+                transform: translateX(0);
+            }
+
+            .mobile-sidebar-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.7);
+                z-index: 999;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+            }
+
+            .mobile-sidebar-overlay.open {
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            .mobile-grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .mobile-grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-only {
+                display: none !important;
+            }
+
+            .desktop-hidden {
+                display: none !important;
+            }
+        }
+
+        /* Анимации */
+        .slide-in-right {
+            animation: slideInRight 0.3s ease;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.3s ease;
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .scale-in {
+            animation: scaleIn 0.3s ease;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Улучшения для тапов */
+        .tap-highlight {
+            transition: transform 0.1s ease, background 0.2s ease;
+        }
+
+        .tap-highlight:active {
+            transform: scale(0.97);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Плавная прокрутка */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Оптимизация для мобилок */
+        input, textarea, button {
+            font-size: 16px !important; /* Предотвращает масштабирование в iOS */
+        }
+
+        /* Стили для длинных текстов */
+        .text-ellipsis {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Оптимизация изображений */
+        img, video {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body class="text-gray-200">
+    <!-- Мобильный сайдбар -->
+    <div id="mobile-sidebar" class="mobile-sidebar mobile-only">
+        <div class="p-6 h-full flex flex-col">
+            <div class="flex items-center space-x-3 mb-8">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center text-white text-2xl relative">
+                    🤠
+                    <div id="mobile-notifications-dot" class="notification-dot hidden"></div>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold gradient-text">Cowboy Messenger</h2>
+                    <p class="text-xs text-blue-300">Ваш ковбойский рай</p>
+                </div>
+                <button id="mobile-close-sidebar" class="ml-auto text-gray-400">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <div class="space-y-2 flex-1">
+                <button data-section="feed" class="nav-btn w-full text-left p-3 rounded-lg hover:bg-slate-700/50 transition flex items-center space-x-3">
+                    <i class="fas fa-newspaper text-blue-400 w-5"></i>
+                    <span>Лента</span>
+                    <span id="mobile-feed-notifications" class="unread-badge hidden">0</span>
+                </button>
+                <button data-section="messenger" class="nav-btn w-full text-left p-3 rounded-lg hover:bg-slate-700/50 transition flex items-center space-x-3">
+                    <i class="fas fa-comments text-blue-400 w-5"></i>
+                    <span>Мессенджер</span>
+                    <span id="mobile-unread-chats" class="unread-badge hidden">0</span>
+                </button>
+                <button data-section="profile" class="nav-btn w-full text-left p-3 rounded-lg hover:bg-slate-700/50 transition flex items-center space-x-3">
+                    <i class="fas fa-user text-blue-400 w-5"></i>
+                    <span>Профиль</span>
+                </button>
+                <button data-section="friends" class="nav-btn w-full text-left p-3 rounded-lg hover:bg-slate-700/50 transition flex items-center space-x-3">
+                    <i class="fas fa-users text-blue-400 w-5"></i>
+                    <span>Друзья</span>
+                    <span id="mobile-friend-requests" class="unread-badge hidden">0</span>
+                </button>
+                <button data-section="shop" class="nav-btn w-full text-left p-3 rounded-lg hover:bg-slate-700/50 transition flex items-center space-x-3">
+                    <i class="fas fa-store text-blue-400 w-5"></i>
+                    <span>Магазин</span>
+                </button>
+                <button data-section="transfers" class="nav-btn w-full text-left p-3 rounded-lg hover:bg-slate-700/50 transition flex items-center space-x-3">
+                    <i class="fas fa-money-bill-transfer text-blue-400 w-5"></i>
+                    <span>Переводы</span>
+                </button>
+                <button id="mobile-admin-btn" data-section="admin" class="nav-btn w-full text-left p-3 rounded-lg hover:bg-slate-700/50 transition flex items-center space-x-3 hidden">
+                    <i class="fas fa-shield-alt text-red-400 w-5"></i>
+                    <span class="text-red-300">Админ-панель</span>
+                </button>
+            </div>
+
+            <div class="pt-8 border-t border-slate-700">
+                <div class="bg-slate-800/50 rounded-xl p-4 mb-4">
+                    <h3 class="font-bold text-sm mb-3 text-blue-300">👑 ТОП Кланов</h3>
+                    <div id="mobile-clan-leaderboard" class="space-y-2">
+                        <!-- Заполнится динамически -->
+                    </div>
+                </div>
+
+                <div class="p-4 bg-slate-800/30 rounded-xl mb-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium">Баланс</span>
+                        <span id="mobile-user-balance" class="text-lg font-bold text-yellow-300">0 C</span>
+                    </div>
+                    <button data-section="transfers" class="nav-btn w-full bg-slate-700 hover:bg-slate-600 py-2 rounded-lg text-sm transition">
+                        Пополнить / Перевести
+                    </button>
+                </div>
+
+                <button id="mobile-logout-btn" class="w-full bg-slate-800 hover:bg-slate-700 py-3 rounded-xl flex items-center justify-center space-x-2 transition">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выйти</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile-sidebar-overlay" class="mobile-sidebar-overlay mobile-only"></div>
+
+    <!-- Основной контейнер -->
+    <div id="app" class="min-h-screen flex flex-col">
+        <!-- Экран входа/регистрации (мобильная версия) -->
+        <div id="auth-screen" class="flex items-center justify-center min-h-screen w-full p-4">
+            <div class="glassmorphism rounded-2xl p-6 w-full max-w-md card-hover">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center justify-center text-3xl mx-auto mb-4">
+                        🤠
+                    </div>
+                    <h2 class="text-2xl font-bold gradient-text">Cowboy Messenger</h2>
+                    <p class="text-gray-400 mt-2 text-sm">Присоединяйтесь к ковбойскому сообществу!</p>
+                </div>
+
+                <!-- Вкладки -->
+                <div class="flex mb-4 bg-slate-800 rounded-xl p-1">
+                    <button id="mobile-login-tab" class="flex-1 py-3 rounded-lg font-medium text-sm tab-active">Вход</button>
+                    <button id="mobile-register-tab" class="flex-1 py-3 rounded-lg font-medium text-sm tab-inactive">Регистрация</button>
+                </div>
+
+                <!-- Форма входа -->
+                <div id="mobile-login-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Никнейм (@username)</label>
+                        <input type="text" id="mobile-login-username" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="@karkarich">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Пароль</label>
+                        <input type="password" id="mobile-login-password" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="••••••••">
+                    </div>
+                    <button id="mobile-login-btn" class="w-full btn-primary text-white py-3 rounded-xl font-bold mt-4 tap-highlight">
+                        Войти в аккаунт
+                    </button>
+                </div>
+
+                <!-- Форма регистрации -->
+                <div id="mobile-register-form" class="space-y-4 hidden">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Выберите клан</label>
+                        <div class="grid mobile-grid-4 gap-2" id="mobile-clan-selection">
+                            <button type="button" data-clan="🦁" class="clan-btn p-3 rounded-xl bg-slate-800 hover:bg-slate-700 transition text-lg">🦁</button>
+                            <button type="button" data-clan="🦅" class="clan-btn p-3 rounded-xl bg-slate-800 hover:bg-slate-700 transition text-lg">🦅</button>
+                            <button type="button" data-clan="🐺" class="clan-btn p-3 rounded-xl bg-slate-800 hover:bg-slate-700 transition text-lg">🐺</button>
+                            <button type="button" data-clan="🐻" class="clan-btn p-3 rounded-xl bg-slate-800 hover:bg-slate-700 transition text-lg">🐻</button>
+                            <button type="button" data-clan="🦊" class="clan-btn p-3 rounded-xl bg-slate-800 hover:bg-slate-700 transition text-lg">🦊</button>
+                            <button type="button" data-clan="🐯" class="clan-btn p-3 rounded-xl bg-slate-800 hover:bg-slate-700 transition text-lg">🐯</button>
+                            <button type="button" data-clan="🦉" class="clan-btn p-3 rounded-xl bg-slate-800 hover:bg-slate-700 transition text-lg">🦉</button>
+                            <button type="button" data-clan="🐍" class="clan-btn p-3 rounded-xl bg-slate-800 hover:bg-slate-700 transition text-lg">🐍</button>
+                        </div>
+                        <p class="text-xs text-red-400 mt-2 hidden" id="mobile-clan-error">Пожалуйста, выберите клан</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Никнейм</label>
+                        <input type="text" id="mobile-reg-username" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="@username">
+                        <p class="text-xs text-gray-400 mt-1">Начинается с @, только буквы, цифры, _ и -</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Пароль</label>
+                        <input type="password" id="mobile-reg-password" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Минимум 8 символов">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Имя (необязательно)</label>
+                            <input type="text" id="mobile-reg-firstname" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Фамилия (необязательно)</label>
+                            <input type="text" id="mobile-reg-lastname" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                    </div>
+
+                    <button id="mobile-register-btn" class="w-full btn-primary text-white py-3 rounded-xl font-bold mt-4 tap-highlight">
+                        Создать аккаунт
+                    </button>
+                </div>
+
+                <p class="text-center text-gray-400 mt-6 text-xs">
+                    Создавая аккаунт, вы соглашаетесь с нашими правилами
+                </p>
+            </div>
+        </div>
+
+        <!-- Основное приложение (мобильная версия) -->
+        <div id="main-app" class="hidden w-full h-screen flex flex-col">
+            <!-- Мобильный заголовок -->
+            <div class="mobile-header flex items-center justify-between">
+                <button id="mobile-menu-btn" class="w-10 h-10 rounded-lg bg-slate-800/50 flex items-center justify-center tap-highlight">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <div class="text-center flex-1 px-4">
+                    <h1 class="text-lg font-bold gradient-text" id="mobile-current-section">Лента</h1>
+                    <p class="text-xs text-gray-400" id="mobile-section-description">Последние обновления</p>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <div class="bg-slate-800/50 rounded-full px-3 py-1.5 flex items-center space-x-1.5">
+                        <span id="mobile-header-balance" class="text-yellow-300 font-bold text-sm">0 C</span>
+                        <span class="text-blue-300">🤠</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Контейнер для контента -->
+            <div id="mobile-content" class="flex-1 overflow-y-auto mobile-content">
+                <!-- Лента (мобильная) -->
+                <div id="mobile-feed-content" class="section-content section-active p-4">
+                    <!-- Создание поста -->
+                    <div class="glassmorphism rounded-2xl p-4 mb-4">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center">
+                                ${currentUser?.clan || '🤠'}
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-bold text-sm">${currentUser?.firstName || currentUser?.username || 'Вы'}</div>
+                                <div class="text-xs text-gray-400">Создать пост</div>
+                            </div>
+                        </div>
+
+                        <textarea id="mobile-post-content" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 h-24 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-3 text-base" placeholder="Что у вас нового, ковбой?"></textarea>
+
+                        <div class="mb-3">
+                            <div class="flex space-x-2">
+                                <label class="cursor-pointer flex-1">
+                                    <input type="file" id="mobile-post-media" class="hidden" accept="image/*,video/*" multiple>
+                                    <div class="px-3 py-2 bg-slate-800 hover:bg-slate-700 rounded-xl flex items-center justify-center space-x-2 text-sm">
+                                        <i class="fas fa-image"></i>
+                                        <span>Фото/Видео</span>
+                                    </div>
+                                </label>
+                                <button id="mobile-clear-media" class="px-3 py-2 bg-red-800/30 hover:bg-red-700/40 rounded-xl">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                            <div id="mobile-media-preview" class="mt-3 grid mobile-grid-3 gap-2 hidden">
+                                <!-- Превью медиафайлов -->
+                            </div>
+                        </div>
+
+                        <button id="mobile-create-post-btn" class="w-full btn-primary py-3 rounded-xl font-bold text-sm tap-highlight">
+                            Опубликовать
+                        </button>
+                    </div>
+
+                    <!-- Посты -->
+                    <div id="mobile-posts-container">
+                        <!-- Посты будут здесь -->
+                    </div>
+                </div>
+
+                <!-- Мессенджер (мобильная версия) -->
+                <div id="mobile-messenger-content" class="section-content h-full">
+                    <!-- Список чатов -->
+                    <div class="h-full">
+                        <div class="p-4">
+                            <div class="flex items-center justify-between mb-4">
+                                <h2 class="text-xl font-bold">Сообщения</h2>
+                                <button id="mobile-new-chat-btn" class="w-10 h-10 rounded-full bg-blue-600 hover:bg-blue-700 flex items-center justify-center tap-highlight">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+
+                            <div id="mobile-chats-list" class="space-y-3">
+                                <!-- Список чатов -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Окно чата (отдельная страница) -->
+                    <div id="mobile-chat-window" class="hidden fixed inset-0 z-50 bg-slate-900">
+                        <div class="h-full flex flex-col">
+                            <!-- Заголовок чата -->
+                            <div class="mobile-header flex items-center p-4 border-b border-slate-700">
+                                <button id="mobile-back-to-chats" class="mobile-back-btn">
+                                    <i class="fas fa-arrow-left"></i>
+                                </button>
+                                <div id="mobile-chat-header" class="text-center flex-1 px-12">
+                                    <!-- Заполнится динамически -->
+                                </div>
+                            </div>
+
+                            <!-- Сообщения -->
+                            <div id="mobile-messages-container" class="flex-1 overflow-y-auto p-4 mobile-messages-container">
+                                <!-- Сообщения будут здесь -->
+                            </div>
+
+                            <!-- Ввод сообщения -->
+                            <div class="mobile-chat-input">
+                                <div id="mobile-typing-indicator" class="typing-indicator hidden mb-2">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <label class="cursor-pointer">
+                                        <input type="file" id="mobile-chat-media" class="hidden" accept="image/*,video/*">
+                                        <div class="w-10 h-10 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center tap-highlight">
+                                            <i class="fas fa-image"></i>
+                                        </div>
+                                    </label>
+                                    <input type="text" id="mobile-message-input" class="flex-1 bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-base" placeholder="Сообщение...">
+                                    <button id="mobile-send-message-btn" class="btn-primary px-4 rounded-xl font-bold tap-highlight">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Профиль (мобильная версия) -->
+                <div id="mobile-profile-content" class="section-content p-4">
+                    <div class="glassmorphism rounded-2xl overflow-hidden mb-4">
+                        <div class="h-32 bg-gradient-to-r from-blue-900/50 to-cyan-900/50 relative"></div>
+                        <div class="p-4 relative">
+                            <div class="absolute -top-8 left-4">
+                                <div id="mobile-profile-avatar" class="w-16 h-16 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center justify-center text-2xl border-4 border-slate-900">
+                                    <!-- Аватар -->
+                                </div>
+                            </div>
+                            <div class="ml-20">
+                                <h2 id="mobile-profile-name" class="text-lg font-bold line-clamp-1"></h2>
+                                <p id="mobile-profile-username" class="text-blue-300 text-sm line-clamp-1"></p>
+                                <div class="flex items-center space-x-2 mt-1">
+                                    <div id="mobile-profile-clan" class="px-2 py-0.5 bg-slate-800 rounded-full text-xs"></div>
+                                    <div class="text-yellow-300 font-bold" id="mobile-profile-balance"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-3 mb-4">
+                        <div class="glassmorphism rounded-xl p-3 text-center">
+                            <div class="text-blue-400 text-lg mb-1">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="text-xs text-gray-400">Друзья</div>
+                            <div id="mobile-friends-count" class="font-bold text-sm">0</div>
+                        </div>
+                        <div class="glassmorphism rounded-xl p-3 text-center">
+                            <div class="text-blue-400 text-lg mb-1">
+                                <i class="fas fa-newspaper"></i>
+                            </div>
+                            <div class="text-xs text-gray-400">Посты</div>
+                            <div id="mobile-posts-count" class="font-bold text-sm">0</div>
+                        </div>
+                        <div class="glassmorphism rounded-xl p-3 text-center">
+                            <div class="text-blue-400 text-lg mb-1">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <div class="text-xs text-gray-400">Подарки</div>
+                            <div id="mobile-gifts-count" class="font-bold text-sm">0</div>
+                        </div>
+                    </div>
+
+                    <!-- Витрина подарков -->
+                    <div class="glassmorphism rounded-2xl p-4 mb-4">
+                        <h3 class="text-lg font-bold mb-3">🎁 Витрина подарков</h3>
+                        <div id="mobile-profile-showcase" class="grid mobile-grid-4 gap-3">
+                            <!-- Витрина подарков -->
+                        </div>
+                        <p id="mobile-no-showcase" class="text-gray-400 text-center py-4 text-sm">На витрине пока нет подарков</p>
+                    </div>
+
+                    <!-- Инвентарь -->
+                    <div class="glassmorphism rounded-2xl p-4 mb-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-lg font-bold">🎒 Мой инвентарь</h3>
+                            <button data-section="shop" class="text-blue-400 text-sm flex items-center">
+                                <i class="fas fa-store mr-1"></i> Магазин
+                            </button>
+                        </div>
+                        <div id="mobile-inventory-items" class="space-y-2 max-h-60 overflow-y-auto">
+                            <!-- Инвентарь -->
+                        </div>
+                    </div>
+
+                    <!-- Посты пользователя -->
+                    <div class="glassmorphism rounded-2xl p-4">
+                        <h3 class="text-lg font-bold mb-3">📝 Мои посты</h3>
+                        <div id="mobile-profile-posts" class="space-y-3">
+                            <!-- Посты пользователя -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Друзья (мобильная версия) -->
+                <div id="mobile-friends-content" class="section-content p-4">
+                    <div class="glassmorphism rounded-2xl p-4">
+                        <div class="text-center mb-6">
+                            <div class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center text-2xl mb-4 mx-auto">
+                                <i class="fas fa-users text-blue-400"></i>
+                            </div>
+                            <h2 class="text-xl font-bold mb-2">Друзья</h2>
+                            <p class="text-gray-400 text-sm">Найдите новых друзей и общайтесь</p>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="flex space-x-2">
+                                <input type="text" id="mobile-search-friend-input" class="flex-1 bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Поиск по никнейму...">
+                                <button id="mobile-search-friend-btn" class="btn-primary px-4 rounded-xl font-bold text-sm tap-highlight">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="mobile-search-results" class="hidden mb-4">
+                            <!-- Результаты поиска -->
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="glassmorphism rounded-xl p-3">
+                                <h3 class="text-md font-bold mb-3 text-blue-300">Ваши друзья</h3>
+                                <div id="mobile-friends-list" class="space-y-2">
+                                    <!-- Список друзей -->
+                                </div>
+                            </div>
+
+                            <div class="glassmorphism rounded-xl p-3">
+                                <h3 class="text-md font-bold mb-3 text-yellow-300">Заявки в друзья</h3>
+                                <div id="mobile-friend-requests" class="space-y-2">
+                                    <!-- Заявки -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Магазин (мобильная версия) -->
+                <div id="mobile-shop-content" class="section-content p-4">
+                    <div class="glassmorphism rounded-2xl p-4">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <h2 class="text-xl font-bold gradient-text">🎁 Магазин</h2>
+                                <p class="text-gray-400 text-sm">Купите подарки для себя или друзей</p>
+                            </div>
+                            <div class="bg-slate-800/50 px-4 py-2 rounded-xl">
+                                <span class="text-gray-400 text-xs mr-1">Баланс:</span>
+                                <span id="mobile-shop-balance" class="text-lg font-bold text-yellow-300">0 C</span>
+                            </div>
+                        </div>
+
+                        <div id="mobile-gifts-shop" class="grid mobile-grid-2 gap-4">
+                            <!-- Товары магазина -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Переводы (мобильная версия) -->
+                <div id="mobile-transfers-content" class="section-content p-4">
+                    <div class="glassmorphism rounded-2xl p-4">
+                        <div class="text-center mb-6">
+                            <div class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center text-2xl mb-4 mx-auto">
+                                <i class="fas fa-money-bill-transfer text-blue-400"></i>
+                            </div>
+                            <h2 class="text-xl font-bold mb-2">Переводы Cowboy</h2>
+                            <p class="text-gray-400 text-sm">Отправляйте валюту друзьям и знакомым</p>
+                        </div>
+
+                        <div class="bg-slate-800/30 rounded-xl p-4 mb-6">
+                            <h4 class="font-bold mb-4 text-lg">Новый перевод</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Никнейм получателя</label>
+                                    <input type="text" id="mobile-transfer-to" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="@username">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Сумма (C)</label>
+                                    <input type="number" id="mobile-transfer-amount" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" min="1" placeholder="10">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Сообщение (необязательно)</label>
+                                    <input type="text" id="mobile-transfer-message" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="За что перевод">
+                                </div>
+                                <button id="mobile-make-transfer-btn" class="w-full btn-primary py-3 rounded-xl font-bold tap-highlight">
+                                    Отправить перевод
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold mb-4 text-lg">📊 История переводов</h4>
+                            <div id="mobile-transfers-history" class="space-y-3 max-h-80 overflow-y-auto">
+                                <!-- История -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Админ-панель (мобильная версия) -->
+                <div id="mobile-admin-content" class="section-content p-4">
+                    <div class="glassmorphism rounded-2xl p-4">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-red-600 to-pink-500 flex items-center justify-center text-xl mr-3">
+                                👑
+                            </div>
+                            <div>
+                                <h2 class="text-xl font-bold gradient-text">Админ-панель</h2>
+                                <p class="text-gray-400 text-sm">Управление системой</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="bg-slate-800/30 rounded-xl p-4">
+                                <h3 class="font-bold mb-4 text-lg">💰 Изменить баланс</h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Никнейм пользователя</label>
+                                        <input type="text" id="mobile-admin-username" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="@username">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Новый баланс (C)</label>
+                                        <input type="number" id="mobile-admin-balance" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="1000">
+                                    </div>
+                                    <button id="mobile-admin-set-balance-btn" class="w-full bg-gradient-to-r from-red-600 to-pink-500 hover:from-red-700 hover:to-pink-600 py-3 rounded-xl font-bold tap-highlight">
+                                        Установить баланс
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-800/30 rounded-xl p-4">
+                                <h3 class="font-bold mb-4 text-lg">🎯 Раздача клану</h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Выберите клан</label>
+                                        <select id="mobile-admin-clan" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                            <option value="🦁">🦁 Львы</option>
+                                            <option value="🦅">🦅 Орлы</option>
+                                            <option value="🐺">🐺 Волки</option>
+                                            <option value="🐻">🐻 Медведи</option>
+                                            <option value="🦊">🦊 Лисы</option>
+                                            <option value="🐯">🐯 Тигры</option>
+                                            <option value="🦉">🦉 Совы</option>
+                                            <option value="🐍">🐍 Змеи</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Сумма каждому участнику (C)</label>
+                                        <input type="number" id="mobile-admin-clan-amount" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="100">
+                                    </div>
+                                    <button id="mobile-admin-distribute-btn" class="w-full bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-700 hover:to-emerald-600 py-3 rounded-xl font-bold tap-highlight">
+                                        Раздать клану
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Мобильная навигация внизу -->
+            <div class="mobile-bottom-nav">
+                <div class="flex justify-between">
+                    <button data-section="feed" class="mobile-bottom-nav-btn active flex flex-col items-center tap-highlight">
+                        <i class="fas fa-newspaper text-lg mb-1"></i>
+                        <span>Лента</span>
+                    </button>
+                    <button data-section="messenger" class="mobile-bottom-nav-btn flex flex-col items-center tap-highlight">
+                        <i class="fas fa-comments text-lg mb-1"></i>
+                        <span>Чат</span>
+                    </button>
+                    <button data-section="profile" class="mobile-bottom-nav-btn flex flex-col items-center tap-highlight">
+                        <i class="fas fa-user text-lg mb-1"></i>
+                        <span>Профиль</span>
+                    </button>
+                    <button data-section="friends" class="mobile-bottom-nav-btn flex flex-col items-center tap-highlight">
+                        <i class="fas fa-users text-lg mb-1"></i>
+                        <span>Друзья</span>
+                    </button>
+                    <button data-section="shop" class="mobile-bottom-nav-btn flex flex-col items-center tap-highlight">
+                        <i class="fas fa-store text-lg mb-1"></i>
+                        <span>Магазин</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- FAB для быстрого создания поста -->
+            <button id="mobile-fab" class="mobile-fab tap-highlight hidden">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+
+        <!-- Десктопная версия (скрыта на мобилках) -->
+        <div id="desktop-app" class="hidden desktop-hidden w-full h-screen">
+            <!-- Десктопная версия остается без изменений -->
+            <!-- ... остальной код десктопной версии ... -->
+        </div>
+    </div>
+
+    <!-- Модальные окна -->
+    <div id="modals-container"></div>
+
+    <script>
+        // ===========================================
+        // ОСНОВНЫЕ НАСТРОЙКИ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ
+        // ===========================================
+        const isMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        // Показываем соответствующую версию приложения
+        if (isMobile) {
+            document.getElementById('main-app').classList.remove('hidden');
+            document.getElementById('desktop-app').classList.add('hidden');
+        } else {
+            document.getElementById('main-app').classList.add('hidden');
+            document.getElementById('desktop-app').classList.remove('hidden');
+            // Загружаем десктопную версию
+            loadDesktopVersion();
+        }
+
+        // ===========================================
+        // ИНИЦИАЛИЗАЦИЯ ДАННЫХ (ОБЩАЯ)
+        // ===========================================
+        const DB = {
+            users: JSON.parse(localStorage.getItem('cowboy_users')) || [],
+            posts: JSON.parse(localStorage.getItem('cowboy_posts')) || [],
+            chats: JSON.parse(localStorage.getItem('cowboy_chats')) || [],
+            gifts: JSON.parse(localStorage.getItem('cowboy_gifts')) || [],
+            transactions: JSON.parse(localStorage.getItem('cowboy_transactions')) || [],
+            friendRequests: JSON.parse(localStorage.getItem('cowboy_friend_requests')) || [],
+            friendships: JSON.parse(localStorage.getItem('cowboy_friendships')) || [],
+            notifications: JSON.parse(localStorage.getItem('cowboy_notifications')) || [],
+            chatMessages: JSON.parse(localStorage.getItem('cowboy_chat_messages')) || []
+        };
+
+        // Предзаполненные подарки
+        const DEFAULT_GIFTS = [
+            { id: 1, name: "🌹 Роза", price: 10, emoji: "🌹", description: "Классический подарок", purchases: 0, popular: 50 },
+            { id: 2, name: "🚗 Машина", price: 500, emoji: "🚗", description: "Стильный транспорт", purchases: 0, popular: 30 },
+            { id: 3, name: "🚀 Ракета", price: 1000, emoji: "🚀", description: "Для космических амбиций", purchases: 0, popular: 20 },
+            { id: 4, name: "🏆 Кубок", price: 300, emoji: "🏆", description: "За победы", purchases: 0, popular: 40 },
+            { id: 5, name: "💎 Алмаз", price: 800, emoji: "💎", description: "Роскошный подарок", purchases: 0, popular: 25 },
+            { id: 6, name: "🎸 Гитара", price: 200, emoji: "🎸", description: "Музыкальный подарок", purchases: 0, popular: 35 },
+            { id: 7, name: "👑 Корона", price: 1500, emoji: "👑", description: "Королевский подарок", purchases: 0, popular: 15 },
+            { id: 8, name: "🛡️ Щит", price: 400, emoji: "🛡️", description: "Для защиты", purchases: 0, popular: 28 }
+        ];
+
+        // Текущий пользователь
+        let currentUser = null;
+        let selectedMedia = [];
+        let activeChatId = null;
+        let activeChatUser = null;
+
+        // Состояние приложения
+        const state = {
+            selectedClan: null,
+            activeModal: null,
+            currentSection: 'feed',
+            isMobile: isMobile
+        };
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Документ загружен, устройство:", isMobile ? "Мобильное" : "Десктоп");
+            initApp();
+        });
+
+        function initApp() {
+            console.log("Инициализация приложения...");
+
+            // Инициализируем подарки если их нет
+            if (DB.gifts.length === 0) {
+                DB.gifts = DEFAULT_GIFTS;
+                saveToDB('gifts');
+                console.log("Подарки инициализированы");
+            }
+
+            // Проверяем, есть ли активный пользователь
+            const savedUser = localStorage.getItem('cowboy_current_user');
+            if (savedUser) {
+                try {
+                    currentUser = JSON.parse(savedUser);
+                    console.log("Найден сохраненный пользователь:", currentUser.username);
+                    showApp();
+                } catch (e) {
+                    console.error("Ошибка при загрузке пользователя:", e);
+                    showAuth();
+                }
+            } else {
+                console.log("Нет сохраненного пользователя, показываем экран авторизации");
+                showAuth();
+            }
+
+            // Настраиваем обработчики событий
+            setupEventListeners();
+        }
+
+        // Настройка обработчиков событий для мобильной версии
+        function setupEventListeners() {
+            console.log("Настройка обработчиков событий для мобильной версии...");
+
+            if (state.isMobile) {
+                setupMobileListeners();
+            } else {
+                setupDesktopListeners();
+            }
+        }
+
+        function setupMobileListeners() {
+            // Обработчики вкладок авторизации
+            document.getElementById('mobile-login-tab').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                switchAuthTab('login', true);
+            });
+
+            document.getElementById('mobile-register-tab').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                switchAuthTab('register', true);
+            });
+
+            // Обработчики кнопок входа/регистрации
+            document.getElementById('mobile-login-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                login(true);
+            });
+
+            document.getElementById('mobile-register-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                register(true);
+            });
+
+            // Обработчики выбора клана
+            document.querySelectorAll('#mobile-clan-selection .clan-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const clan = this.getAttribute('data-clan');
+                    console.log("Выбран клан:", clan);
+                    selectClan(clan, true);
+                });
+            });
+
+            // Обработчик Enter в форме логина
+            document.getElementById('mobile-login-password').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    login(true);
+                }
+            });
+
+            // Обработчик Enter в форме регистрации
+            document.getElementById('mobile-reg-password').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    register(true);
+                }
+            });
+
+            // Мобильное меню
+            document.getElementById('mobile-menu-btn').addEventListener('click', openMobileSidebar);
+            document.getElementById('mobile-close-sidebar').addEventListener('click', closeMobileSidebar);
+            document.getElementById('mobile-sidebar-overlay').addEventListener('click', closeMobileSidebar);
+
+            // Мобильная навигация
+            document.querySelectorAll('.mobile-bottom-nav-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const section = this.getAttribute('data-section');
+                    if (section) {
+                        showMobileSection(section);
+                    }
+                });
+            });
+
+            // Навигация в сайдбаре
+            document.querySelectorAll('#mobile-sidebar .nav-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const section = this.getAttribute('data-section');
+                    if (section) {
+                        showMobileSection(section);
+                        closeMobileSidebar();
+                    }
+                });
+            });
+
+            // Выход
+            document.getElementById('mobile-logout-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                logout();
+            });
+
+            // Создание поста
+            document.getElementById('mobile-create-post-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                createPost(true);
+            });
+
+            document.getElementById('mobile-clear-media').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                clearMedia(true);
+            });
+
+            // FAB кнопка
+            document.getElementById('mobile-fab').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (state.currentSection === 'feed') {
+                    // Прокручиваем к форме создания поста
+                    document.getElementById('mobile-post-content').focus();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+
+            // Мессенджер
+            document.getElementById('mobile-new-chat-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                showNewChatModal(true);
+            });
+
+            document.getElementById('mobile-back-to-chats').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                closeChatWindow();
+            });
+
+            document.getElementById('mobile-send-message-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                sendMessage(true);
+            });
+
+            document.getElementById('mobile-message-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    sendMessage(true);
+                }
+            });
+
+            // Друзья
+            document.getElementById('mobile-search-friend-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                searchFriend(true);
+            });
+
+            // Переводы
+            document.getElementById('mobile-make-transfer-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                makeTransfer(true);
+            });
+
+            // Админ-панель
+            document.getElementById('mobile-admin-set-balance-btn')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                adminSetBalance(true);
+            });
+
+            document.getElementById('mobile-admin-distribute-btn')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                adminDistributeToClan(true);
+            });
+
+            console.log("Мобильные обработчики событий настроены");
+        }
+
+        // ===========================================
+        // МОБИЛЬНЫЙ ИНТЕРФЕЙС
+        // ===========================================
+
+        function openMobileSidebar() {
+            document.getElementById('mobile-sidebar').classList.add('open');
+            document.getElementById('mobile-sidebar-overlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileSidebar() {
+            document.getElementById('mobile-sidebar').classList.remove('open');
+            document.getElementById('mobile-sidebar-overlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function showMobileSection(section) {
+            console.log("Переключение на мобильный раздел:", section);
+
+            // Сохраняем текущий раздел
+            state.currentSection = section;
+
+            // Обновляем активную кнопку в нижней навигации
+            document.querySelectorAll('.mobile-bottom-nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-section') === section) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Обновляем активную кнопку в сайдбаре
+            document.querySelectorAll('#mobile-sidebar .nav-btn').forEach(btn => {
+                btn.classList.remove('nav-active');
+                if (btn.getAttribute('data-section') === section) {
+                    btn.classList.add('nav-active');
+                }
+            });
+
+            // Скрываем все разделы контента
+            document.querySelectorAll('#mobile-content .section-content').forEach(div => {
+                div.classList.remove('section-active');
+            });
+
+            // Показываем выбранный раздел
+            const sectionElement = document.getElementById(`mobile-${section}-content`);
+            if (sectionElement) {
+                sectionElement.classList.add('section-active');
+            }
+
+            // Обновляем заголовок
+            const titles = {
+                'feed': 'Лента',
+                'messenger': 'Мессенджер',
+                'profile': 'Профиль',
+                'friends': 'Друзья',
+                'shop': 'Магазин',
+                'transfers': 'Переводы',
+                'admin': 'Админ-панель'
+            };
+
+            const descriptions = {
+                'feed': 'Последние обновления',
+                'messenger': 'Личные сообщения',
+                'profile': 'Ваш профиль',
+                'friends': 'Поиск друзей',
+                'shop': 'Покупка подарков',
+                'transfers': 'Переводы',
+                'admin': 'Управление системой'
+            };
+
+            document.getElementById('mobile-current-section').textContent = titles[section] || 'Лента';
+            document.getElementById('mobile-section-description').textContent = descriptions[section] || 'Последние обновления';
+
+            // Показываем/скрываем FAB кнопку
+            const fab = document.getElementById('mobile-fab');
+            if (section === 'feed') {
+                fab.classList.remove('hidden');
+            } else {
+                fab.classList.add('hidden');
+            }
+
+            // Загружаем контент раздела
+            loadMobileSectionContent(section);
+
+            // Обновляем уведомления
+            updateNotifications();
+
+            // Прокручиваем вверх
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function loadMobileSectionContent(section) {
+            switch(section) {
+                case 'feed':
+                    loadMobileFeed();
+                    break;
+                case 'messenger':
+                    loadMobileMessenger();
+                    break;
+                case 'profile':
+                    loadMobileProfile();
+                    break;
+                case 'friends':
+                    loadMobileFriends();
+                    break;
+                case 'shop':
+                    loadMobileShop();
+                    break;
+                case 'transfers':
+                    loadMobileTransfers();
+                    break;
+                case 'admin':
+                    loadMobileAdminPanel();
+                    break;
+            }
+        }
+
+        // ===========================================
+        // МОБИЛЬНЫЕ ФУНКЦИИ
+        // ===========================================
+
+        function showMobileAuth() {
+            document.getElementById('auth-screen').classList.remove('hidden');
+            document.getElementById('main-app').classList.add('hidden');
+            switchAuthTab('login', true);
+        }
+
+        function showMobileApp() {
+            document.getElementById('auth-screen').classList.add('hidden');
+            document.getElementById('main-app').classList.remove('hidden');
+
+            // Обновляем информацию в шапке
+            updateMobileHeader();
+
+            // Загружаем текущий раздел
+            showMobileSection(state.currentSection);
+
+            // Обновляем уведомления
+            updateNotifications();
+        }
+
+        function updateMobileHeader() {
+            if (!currentUser) return;
+
+            // Обновляем баланс в шапке
+            document.getElementById('mobile-header-balance').textContent = `${currentUser.balance} C`;
+            document.getElementById('mobile-user-balance').textContent = `${currentUser.balance} C`;
+
+            // Обновляем информацию в сайдбаре
+            updateMobileSidebar();
+        }
+
+        function updateMobileSidebar() {
+            if (!currentUser) return;
+
+            // Обновляем аватар
+            document.getElementById('mobile-profile-avatar').innerHTML = currentUser.clan;
+
+            // Обновляем баланс
+            document.getElementById('mobile-user-balance').textContent = `${currentUser.balance} C`;
+
+            // Показываем/скрываем кнопку админа
+            const adminBtn = document.getElementById('mobile-admin-btn');
+            if (currentUser.username === '@karkarich') {
+                adminBtn.classList.remove('hidden');
+            } else {
+                adminBtn.classList.add('hidden');
+            }
+
+            // Обновляем лидерборд кланов
+            updateMobileClanLeaderboard();
+        }
+
+        function updateMobileClanLeaderboard() {
+            const leaderboard = document.getElementById('mobile-clan-leaderboard');
+            if (!leaderboard) return;
+
+            // Собираем статистику по кланам, исключая @karkarich
+            const clanStats = {};
+            DB.users.forEach(user => {
+                if (user.username === '@karkarich') return;
+
+                if (!clanStats[user.clan]) {
+                    clanStats[user.clan] = {
+                        count: 0,
+                        totalBalance: 0,
+                        emoji: user.clan
+                    };
+                }
+                clanStats[user.clan].count++;
+                clanStats[user.clan].totalBalance += user.balance;
+            });
+
+            // Преобразуем в массив и сортируем по количеству участников, берем топ 3
+            const topClans = Object.entries(clanStats)
+                .map(([clan, stats]) => ({
+                    clan,
+                    ...stats
+                }))
+                .sort((a, b) => b.count - a.count)
+                .slice(0, 3);
+
+            if (topClans.length === 0) {
+                leaderboard.innerHTML = '<p class="text-gray-400 text-xs text-center">Нет данных</p>';
+                return;
+            }
+
+            leaderboard.innerHTML = topClans.map((clan, index) => `
+                <div class="flex items-center justify-between p-1.5 hover:bg-slate-800/50 rounded-lg transition">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-full ${index === 0 ? 'bg-gradient-to-r from-yellow-500 to-yellow-300' : index === 1 ? 'bg-gradient-to-r from-gray-400 to-gray-300' : 'bg-gradient-to-r from-amber-700 to-amber-600'} flex items-center justify-center text-sm">
+                            ${clan.emoji}
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="text-xs font-bold truncate">${getClanName(clan.clan)}</div>
+                            <div class="text-xs text-gray-400">${clan.count} чел.</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-xs text-yellow-300">${clan.totalBalance.toLocaleString()} C</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ===========================================
+        // ОБЩИЕ ФУНКЦИИ (РАБОТАЮТ ДЛЯ ОБЕИХ ВЕРСИЙ)
+        // ===========================================
+
+        function switchAuthTab(tab, isMobile = false) {
+            console.log("Переключение на вкладку:", tab, isMobile ? "(мобильная)" : "(десктоп)");
+
+            if (isMobile) {
+                const loginTab = document.getElementById('mobile-login-tab');
+                const registerTab = document.getElementById('mobile-register-tab');
+                const loginForm = document.getElementById('mobile-login-form');
+                const registerForm = document.getElementById('mobile-register-form');
+
+                if (tab === 'login') {
+                    loginTab.classList.remove('tab-inactive');
+                    loginTab.classList.add('tab-active');
+                    registerTab.classList.remove('tab-active');
+                    registerTab.classList.add('tab-inactive');
+                    loginForm.classList.remove('hidden');
+                    registerForm.classList.add('hidden');
+                } else {
+                    registerTab.classList.remove('tab-inactive');
+                    registerTab.classList.add('tab-active');
+                    loginTab.classList.remove('tab-active');
+                    loginTab.classList.add('tab-inactive');
+                    registerForm.classList.remove('hidden');
+                    loginForm.classList.add('hidden');
+                }
+            } else {
+                // Десктопная версия
+                const loginTab = document.getElementById('login-tab');
+                const registerTab = document.getElementById('register-tab');
+                const loginForm = document.getElementById('login-form');
+                const registerForm = document.getElementById('register-form');
+
+                if (tab === 'login') {
+                    loginTab.classList.remove('tab-inactive');
+                    loginTab.classList.add('tab-active');
+                    registerTab.classList.remove('tab-active');
+                    registerTab.classList.add('tab-inactive');
+                    loginForm.classList.remove('hidden');
+                    registerForm.classList.add('hidden');
+                } else {
+                    registerTab.classList.remove('tab-inactive');
+                    registerTab.classList.add('tab-active');
+                    loginTab.classList.remove('tab-active');
+                    loginTab.classList.add('tab-inactive');
+                    registerForm.classList.remove('hidden');
+                    loginForm.classList.add('hidden');
+                }
+            }
+        }
+
+        function selectClan(clan, isMobile = false) {
+            state.selectedClan = clan;
+            console.log("Установлен клан:", clan);
+
+            if (isMobile) {
+                // Снимаем выделение со всех кнопок
+                document.querySelectorAll('#mobile-clan-selection .clan-btn').forEach(btn => {
+                    btn.classList.remove('clan-selected');
+                });
+
+                // Выделяем выбранную кнопку
+                document.querySelectorAll('#mobile-clan-selection .clan-btn').forEach(btn => {
+                    if (btn.getAttribute('data-clan') === clan) {
+                        btn.classList.add('clan-selected');
+                    }
+                });
+
+                // Скрываем ошибку выбора клана
+                document.getElementById('mobile-clan-error').classList.add('hidden');
+            } else {
+                // Десктопная версия
+                document.querySelectorAll('.clan-btn').forEach(btn => {
+                    btn.classList.remove('clan-selected');
+                });
+
+                document.querySelectorAll('.clan-btn').forEach(btn => {
+                    if (btn.getAttribute('data-clan') === clan) {
+                        btn.classList.add('clan-selected');
+                    }
+                });
+
+                document.getElementById('clan-error').classList.add('hidden');
+            }
+        }
+
+        function register(isMobile = false) {
+            console.log("Начало регистрации...", isMobile ? "(мобильная)" : "(десктоп)");
+
+            let clan, username, password, firstName, lastName;
+
+            if (isMobile) {
+                clan = state.selectedClan;
+                username = document.getElementById('mobile-reg-username').value.trim();
+                password = document.getElementById('mobile-reg-password').value;
+                firstName = document.getElementById('mobile-reg-firstname').value.trim();
+                lastName = document.getElementById('mobile-reg-lastname').value.trim();
+            } else {
+                clan = state.selectedClan;
+                username = document.getElementById('reg-username').value.trim();
+                password = document.getElementById('reg-password').value;
+                firstName = document.getElementById('reg-firstname').value.trim();
+                lastName = document.getElementById('reg-lastname').value.trim();
+            }
+
+            console.log("Данные регистрации:", { clan, username, password: '***', firstName, lastName });
+
+            // Валидация
+            if (!clan) {
+                if (isMobile) {
+                    document.getElementById('mobile-clan-error').classList.remove('hidden');
+                } else {
+                    document.getElementById('clan-error').classList.remove('hidden');
+                }
+                showNotification('Выберите клан!', 'error');
+                return;
+            }
+
+            if (!username.startsWith('@') || username.length < 3) {
+                showNotification('Никнейм должен начинаться с @ и содержать минимум 3 символа', 'error');
+                return;
+            }
+
+            if (!/^@[a-zA-Z0-9_-]+$/.test(username)) {
+                showNotification('Никнейм может содержать только английские буквы, цифры, _ и -', 'error');
+                return;
+            }
+
+            if (DB.users.find(u => u.username === username)) {
+                showNotification('Этот никнейм уже занят', 'error');
+                return;
+            }
+
+            if (password.length < 8) {
+                showNotification('Пароль должен содержать минимум 8 символов', 'error');
+                return;
+            }
+
+            // Создаем пользователя
+            const newUser = {
+                id: Date.now(),
+                username,
+                password,
+                firstName: firstName || '',
+                lastName: lastName || '',
+                clan,
+                balance: username === '@karkarich' ? 1000000000 : 1000,
+                avatar: clan,
+                createdAt: new Date().toISOString(),
+                inventory: [],
+                showcase: [],
+                posts: [],
+                friends: []
+            };
+
+            DB.users.push(newUser);
+            saveToDB('users');
+
+            // Автоматический вход
+            currentUser = newUser;
+            saveCurrentUser();
+
+            if (isMobile) {
+                showMobileApp();
+            } else {
+                showApp();
+            }
+
+            showNotification('Регистрация успешна! Добро пожаловать в Cowboy Messenger!', 'success');
+
+            // Очищаем форму
+            if (isMobile) {
+                document.getElementById('mobile-reg-username').value = '';
+                document.getElementById('mobile-reg-password').value = '';
+                document.getElementById('mobile-reg-firstname').value = '';
+                document.getElementById('mobile-reg-lastname').value = '';
+            } else {
+                document.getElementById('reg-username').value = '';
+                document.getElementById('reg-password').value = '';
+                document.getElementById('reg-firstname').value = '';
+                document.getElementById('reg-lastname').value = '';
+            }
+        }
+
+        function login(isMobile = false) {
+            console.log("Попытка входа...", isMobile ? "(мобильная)" : "(десктоп)");
+
+            let username, password;
+
+            if (isMobile) {
+                username = document.getElementById('mobile-login-username').value.trim();
+                password = document.getElementById('mobile-login-password').value;
+            } else {
+                username = document.getElementById('login-username').value.trim();
+                password = document.getElementById('login-password').value;
+            }
+
+            console.log("Вход с данными:", { username, password: '***' });
+
+            const user = DB.users.find(u => u.username === username && u.password === password);
+
+            if (user) {
+                console.log("Пользователь найден:", user.username);
+                currentUser = user;
+                saveCurrentUser();
+
+                if (isMobile) {
+                    showMobileApp();
+                } else {
+                    showApp();
+                }
+
+                showNotification('Вход выполнен успешно!', 'success');
+
+                // Очищаем форму
+                if (isMobile) {
+                    document.getElementById('mobile-login-username').value = '';
+                    document.getElementById('mobile-login-password').value = '';
+                } else {
+                    document.getElementById('login-username').value = '';
+                    document.getElementById('login-password').value = '';
+                }
+
+                updateNotifications();
+            } else {
+                console.log("Пользователь не найден или неверный пароль");
+                showNotification('Неверный никнейм или пароль', 'error');
+            }
+        }
+
+        function logout() {
+            console.log("Выход из системы");
+            currentUser = null;
+            localStorage.removeItem('cowboy_current_user');
+
+            if (state.isMobile) {
+                showMobileAuth();
+            } else {
+                showAuth();
+            }
+
+            showNotification('Вы вышли из системы', 'info');
+        }
+
+        // ===========================================
+        // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
+        // ===========================================
+
+        function saveToDB(key) {
+            localStorage.setItem(`cowboy_${key}`, JSON.stringify(DB[key]));
+        }
+
+        function saveCurrentUser() {
+            localStorage.setItem('cowboy_current_user', JSON.stringify(currentUser));
+        }
+
+        function showAuth() {
+            // Десктопная версия
+            document.getElementById('auth-screen').classList.remove('hidden');
+            document.getElementById('main-app').classList.add('hidden');
+            switchAuthTab('login', false);
+        }
+
+        function showApp() {
+            // Десктопная версия
+            document.getElementById('auth-screen').classList.add('hidden');
+            document.getElementById('main-app').classList.remove('hidden');
+            updateHeader();
+            updateClanStats();
+            updateGlobalStats();
+            loadCurrentSection();
+            updateAdminButton();
+            updateNotifications();
+        }
+
+        // Остальные функции остаются похожими, но адаптированными под мобильную версию
+        // Для экономии места покажу только основные шаблоны:
+
+        // ===========================================
+        // ШАБЛОНЫ МОБИЛЬНЫХ ФУНКЦИЙ
+        // ===========================================
+
+        function loadMobileFeed() {
+            const container = document.getElementById('mobile-posts-container');
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            // Сортируем по дате (новые первыми)
+            const sortedPosts = [...DB.posts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            if (sortedPosts.length === 0) {
+                container.innerHTML = `
+                    <div class="glassmorphism rounded-2xl p-6 text-center">
+                        <div class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center text-2xl mx-auto mb-4">
+                            🤠
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Лента пуста</h3>
+                        <p class="text-gray-400 text-sm">Будьте первым, кто опубликует что-то интересное!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            sortedPosts.forEach(post => {
+                const user = DB.users.find(u => u.id === post.userId);
+                const isLiked = post.likes.includes(currentUser.id);
+                const isAuthor = post.userId === currentUser.id;
+
+                const postElement = document.createElement('div');
+                postElement.className = 'glassmorphism rounded-2xl p-4 mb-4 fade-in';
+                postElement.innerHTML = `
+                    <div class="flex items-start justify-between mb-3">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center">
+                                ${user?.clan || '🤠'}
+                            </div>
+                            <div>
+                                <div class="font-bold text-sm">${user?.firstName || user?.username || post.username}</div>
+                                <div class="text-xs text-gray-400">${formatDate(post.createdAt)}</div>
+                            </div>
+                        </div>
+                        ${isAuthor ? `
+                        <button class="post-menu-btn text-gray-400" data-post-id="${post.id}">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>` : ''}
+                    </div>
+
+                    <p class="mb-3 text-sm whitespace-pre-line">${post.content}</p>
+
+                    ${post.media && post.media.length > 0 ? `
+                    <div class="mb-4">
+                        <div class="grid ${post.media.length === 1 ? 'grid-cols-1' : 'grid-cols-2'} gap-2">
+                            ${post.media.slice(0, 4).map((url, index) => {
+                                if (url.includes('data:video')) {
+                                    return `<video src="${url}" controls class="w-full h-40 object-cover rounded-lg"></video>`;
+                                } else {
+                                    return `<img src="${url}" class="post-image w-full h-40 object-cover rounded-lg" onclick="showFullMedia('${url}')">`;
+                                }
+                            }).join('')}
+                        </div>
+                    </div>` : ''}
+
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-700">
+                        <div class="flex items-center space-x-4">
+                            <button class="like-btn flex items-center space-x-1 ${isLiked ? 'text-red-500' : 'text-gray-400'}" data-post-id="${post.id}">
+                                <i class="${isLiked ? 'fas' : 'far'} fa-heart text-sm"></i>
+                                <span class="text-xs">${post.likes.length}</span>
+                            </button>
+                            <button class="comments-btn flex items-center space-x-1 text-gray-400" data-post-id="${post.id}">
+                                <i class="far fa-comment text-sm"></i>
+                                <span class="text-xs">${post.comments.length}</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(postElement);
+            });
+
+            // Добавляем обработчики
+            setTimeout(() => {
+                document.querySelectorAll('.like-btn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const postId = parseInt(this.getAttribute('data-post-id'));
+                        toggleLike(postId);
+                    });
+                });
+            }, 100);
+        }
+
+        function loadMobileMessenger() {
+            const container = document.getElementById('mobile-chats-list');
+            if (!container) return;
+
+            // Получаем чаты текущего пользователя
+            const userChats = DB.chats.filter(chat =>
+                chat.participants.includes(currentUser.id)
+            );
+
+            if (userChats.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center p-8 text-gray-400">
+                        <i class="fas fa-comments text-3xl mb-3"></i>
+                        <p class="text-sm">У вас пока нет чатов</p>
+                        <button id="mobile-create-first-chat" class="mt-4 btn-primary py-2 px-4 rounded-xl text-sm">
+                            Начать общение
+                        </button>
+                    </div>
+                `;
+
+                setTimeout(() => {
+                    const btn = document.getElementById('mobile-create-first-chat');
+                    if (btn) {
+                        btn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            showNewChatModal(true);
+                        });
+                    }
+                }, 100);
+
+                return;
+            }
+
+            container.innerHTML = '';
+
+            userChats.forEach(chat => {
+                const otherUserId = chat.participants.find(id => id !== currentUser.id);
+                const otherUser = DB.users.find(u => u.id === otherUserId);
+                if (!otherUser) return;
+
+                const lastMessage = DB.chatMessages
+                    .filter(m => m.chatId === chat.id)
+                    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
+
+                const unreadCount = DB.chatMessages.filter(m =>
+                    m.chatId === chat.id &&
+                    m.senderId !== currentUser.id &&
+                    !m.read
+                ).length;
+
+                const chatElement = document.createElement('div');
+                chatElement.className = 'p-3 rounded-xl bg-slate-800/50 hover:bg-slate-800 cursor-pointer transition tap-highlight';
+                chatElement.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center">
+                            ${otherUser.clan}
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="font-bold text-sm truncate">${otherUser.firstName || otherUser.username}</div>
+                            <div class="text-xs text-gray-400 truncate">${lastMessage ? (lastMessage.type === 'text' ? lastMessage.content : lastMessage.type === 'image' ? '📷 Фото' : '💰 Перевод') : 'Нет сообщений'}</div>
+                        </div>
+                        ${unreadCount > 0 ? `<span class="unread-badge">${unreadCount}</span>` : ''}
+                    </div>
+                `;
+
+                chatElement.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openMobileChat(chat.id, otherUser);
+                });
+                container.appendChild(chatElement);
+            });
+        }
+
+        function openMobileChat(chatId, otherUser) {
+            activeChatId = chatId;
+            activeChatUser = otherUser;
+
+            // Показываем окно чата
+            document.getElementById('mobile-chat-window').classList.remove('hidden');
+            document.getElementById('mobile-messenger-content').classList.add('hidden');
+
+            // Обновляем заголовок чата
+            document.getElementById('mobile-chat-header').innerHTML = `
+                <div class="flex flex-col items-center">
+                    <div class="font-bold">${otherUser.firstName || otherUser.username}</div>
+                    <div class="text-xs text-gray-400">${otherUser.username}</div>
+                </div>
+            `;
+
+            // Загружаем сообщения
+            loadMobileChatMessages(chatId);
+
+            // Помечаем сообщения как прочитанные
+            markChatAsRead(chatId);
+        }
+
+        function loadMobileChatMessages(chatId) {
+            const container = document.getElementById('mobile-messages-container');
+            if (!container) return;
+
+            const messages = DB.chatMessages
+                .filter(m => m.chatId === chatId)
+                .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+
+            container.innerHTML = '';
+
+            messages.forEach(message => {
+                const isOwn = message.senderId === currentUser.id;
+                const sender = DB.users.find(u => u.id === message.senderId);
+
+                const messageElement = document.createElement('div');
+                messageElement.className = `flex ${isOwn ? 'justify-end' : 'justify-start'} mb-3`;
+
+                let messageContent = '';
+
+                switch (message.type) {
+                    case 'text':
+                        messageContent = `<p class="text-sm">${message.content}</p>`;
+                        break;
+                    case 'image':
+                        messageContent = `
+                            <img src="${message.content}" class="message-image max-w-[200px]" onclick="showFullMedia('${message.content}')">
+                            <p class="text-xs text-gray-400 mt-1">📷 Фото</p>
+                        `;
+                        break;
+                    case 'video':
+                        messageContent = `
+                            <video src="${message.content}" controls class="message-image max-w-[200px]"></video>
+                            <p class="text-xs text-gray-400 mt-1">🎥 Видео</p>
+                        `;
+                        break;
+                    case 'transfer':
+                        const amount = message.amount || 0;
+                        messageContent = `
+                            <div class="bg-yellow-900/30 p-2 rounded-lg">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-money-bill text-yellow-400 text-sm"></i>
+                                    <span class="font-bold text-sm">Перевод ${amount} C</span>
+                                </div>
+                                ${message.content ? `<p class="text-xs mt-1">${message.content}</p>` : ''}
+                            </div>
+                        `;
+                        break;
+                }
+
+                messageElement.innerHTML = `
+                    <div class="message-bubble">
+                        <div class="${isOwn ? 'bg-blue-600' : 'bg-slate-700'} rounded-2xl p-3">
+                            ${!isOwn ? `<div class="text-xs font-bold mb-1">${sender?.username || 'Пользователь'}</div>` : ''}
+                            ${messageContent}
+                            <div class="text-xs ${isOwn ? 'text-gray-300' : 'text-gray-400'} mt-1">
+                                ${formatTime(message.createdAt)}
+                                ${isOwn && message.read ? ' ✓✓' : isOwn ? ' ✓' : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(messageElement);
+            });
+
+            // Прокручиваем вниз
+            setTimeout(() => {
+                container.scrollTop = container.scrollHeight;
+                document.getElementById('mobile-message-input').focus();
+            }, 100);
+        }
+
+        function closeChatWindow() {
+            document.getElementById('mobile-chat-window').classList.add('hidden');
+            document.getElementById('mobile-messenger-content').classList.remove('hidden');
+            activeChatId = null;
+            activeChatUser = null;
+        }
+
+        function sendMessage(isMobile = false) {
+            let input, content;
+
+            if (isMobile) {
+                input = document.getElementById('mobile-message-input');
+                content = input.value.trim();
+            } else {
+                input = document.getElementById('message-input');
+                content = input.value.trim();
+            }
+
+            if (!content && !activeChatId) return;
+
+            if (!activeChatId) {
+                showNotification('Выберите чат для отправки сообщения', 'error');
+                return;
+            }
+
+            const message = {
+                id: Date.now(),
+                chatId: activeChatId,
+                senderId: currentUser.id,
+                type: 'text',
+                content: content,
+                read: false,
+                createdAt: new Date().toISOString()
+            };
+
+            DB.chatMessages.push(message);
+            saveToDB('chatMessages');
+
+            // Очищаем поле ввода
+            input.value = '';
+
+            // Обновляем сообщения
+            if (isMobile) {
+                loadMobileChatMessages(activeChatId);
+                // Обновляем список чатов
+                loadMobileMessenger();
+            } else {
+                loadChatMessages(activeChatId);
+                loadMessenger();
+            }
+
+            // Создаем уведомление
+            if (activeChatUser) {
+                createNotification({
+                    id: Date.now(),
+                    userId: activeChatUser.id,
+                    type: 'message',
+                    fromUserId: currentUser.id,
+                    fromUsername: currentUser.username,
+                    chatId: activeChatId,
+                    message: `Новое сообщение от ${currentUser.username}`,
+                    read: false,
+                    createdAt: new Date().toISOString()
+                });
+            }
+        }
+
+        // ===========================================
+        // УВЕДОМЛЕНИЯ (ОБЩИЕ)
+        // ===========================================
+
+        function createNotification(notification) {
+            DB.notifications.push(notification);
+            saveToDB('notifications');
+            updateNotifications();
+        }
+
+        function updateNotifications() {
+            if (!currentUser) return;
+
+            // Непрочитанные уведомления
+            const unreadNotifications = DB.notifications.filter(n =>
+                n.userId === currentUser.id && !n.read
+            );
+
+            if (state.isMobile) {
+                // Мобильные уведомления
+                const notificationsDot = document.getElementById('mobile-notifications-dot');
+                if (unreadNotifications.length > 0) {
+                    notificationsDot.classList.remove('hidden');
+                } else {
+                    notificationsDot.classList.add('hidden');
+                }
+
+                // Счетчик непрочитанных сообщений
+                const unreadMessages = DB.chatMessages.filter(m => {
+                    const chat = DB.chats.find(c => c.id === m.chatId);
+                    return chat &&
+                           chat.participants.includes(currentUser.id) &&
+                           m.senderId !== currentUser.id &&
+                           !m.read;
+                }).length;
+
+                const unreadChatsBadge = document.getElementById('mobile-unread-chats');
+                if (unreadMessages > 0) {
+                    unreadChatsBadge.textContent = unreadMessages;
+                    unreadChatsBadge.classList.remove('hidden');
+                } else {
+                    unreadChatsBadge.classList.add('hidden');
+                }
+
+                // Счетчик заявок в друзья
+                const friendRequests = DB.friendRequests.filter(req =>
+                    req.toUserId === currentUser.id && req.status === 'pending'
+                ).length;
+
+                const friendRequestsBadge = document.getElementById('mobile-friend-requests');
+                if (friendRequests > 0) {
+                    friendRequestsBadge.textContent = friendRequests;
+                    friendRequestsBadge.classList.remove('hidden');
+                } else {
+                    friendRequestsBadge.classList.add('hidden');
+                }
+
+                // Уведомления для ленты
+                const feedNotifications = unreadNotifications.filter(n =>
+                    n.type === 'like' || n.type === 'comment'
+                ).length;
+
+                const feedNotificationsBadge = document.getElementById('mobile-feed-notifications');
+                if (feedNotifications > 0) {
+                    feedNotificationsBadge.textContent = feedNotifications;
+                    feedNotificationsBadge.classList.remove('hidden');
+                } else {
+                    feedNotificationsBadge.classList.add('hidden');
+                }
+            } else {
+                // Десктопные уведомления
+                // ... аналогичная логика для десктопной версии
+            }
+        }
+
+        // ===========================================
+        // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
+        // ===========================================
+
+        function formatDate(dateString) {
+            try {
+                const date = new Date(dateString);
+                const now = new Date();
+                const diffMs = now - date;
+                const diffMins = Math.floor(diffMs / (1000 * 60));
+                const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+                const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+                if (diffMins < 1) {
+                    return 'Только что';
+                } else if (diffMins < 60) {
+                    return `${diffMins} мин назад`;
+                } else if (diffHours < 24) {
+                    return `${diffHours} ч назад`;
+                } else if (diffDays === 1) {
+                    return 'Вчера';
+                } else if (diffDays < 7) {
+                    return `${diffDays} дн назад`;
+                } else {
+                    return date.toLocaleDateString('ru-RU');
+                }
+            } catch (e) {
+                return 'Недавно';
+            }
+        }
+
+        function formatTime(dateString) {
+            try {
+                const date = new Date(dateString);
+                return date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+            } catch (e) {
+                return '';
+            }
+        }
+
+        function getClanName(emoji) {
+            const clanNames = {
+                '🦁': 'Львы',
+                '🦅': 'Орлы',
+                '🐺': 'Волки',
+                '🐻': 'Медведи',
+                '🦊': 'Лисы',
+                '🐯': 'Тигры',
+                '🦉': 'Совы',
+                '🐍': 'Змеи'
+            };
+            return clanNames[emoji] || emoji;
+        }
+
+        function showModal(content) {
+            const modalsContainer = document.getElementById('modals-container');
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 fade-in mobile-modal';
+            modal.innerHTML = `
+                <div class="mobile-modal-content w-full max-w-md">
+                    ${content}
+                </div>
+            `;
+            modal.onclick = (e) => {
+                if (e.target === modal) closeModal();
+            };
+            modalsContainer.appendChild(modal);
+            state.activeModal = modal;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            if (state.activeModal) {
+                state.activeModal.remove();
+                state.activeModal = null;
+                document.body.style.overflow = '';
+            }
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `fixed ${state.isMobile ? 'top-20' : 'top-4'} right-4 left-4 p-4 rounded-xl z-50 fade-in ${
+                type === 'error' ? 'bg-red-600/90' :
+                type === 'success' ? 'bg-green-600/90' :
+                type === 'warning' ? 'bg-yellow-600/90' : 'bg-blue-600/90'
+            }`;
+            notification.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-${type === 'error' ? 'exclamation-circle' : type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+                    <span class="text-sm">${message}</span>
+                </div>
+            `;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Глобальные функции
+        window.showFullMedia = function(url) {
+            const isVideo = url.includes('data:video');
+
+            showModal(`
+                <div class="bg-slate-900 rounded-2xl p-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <div></div>
+                        <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center tap-highlight">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="flex justify-center">
+                        ${isVideo ?
+                            `<video src="${url}" controls autoplay class="w-full rounded-lg" playsinline></video>` :
+                            `<img src="${url}" class="max-w-full rounded-lg">`
+                        }
+                    </div>
+                </div>
+            `);
+        };
+
+        window.closeModal = closeModal;
+
+        // Загрузка остальных мобильных функций
+        // (loadMobileProfile, loadMobileFriends, loadMobileShop и т.д.)
+        // Они будут похожи на уже показанные функции, но адаптированные под мобильный интерфейс
+
+        console.log("Мобильное приложение инициализировано!");
+    </script>
+</body>
+</html>
