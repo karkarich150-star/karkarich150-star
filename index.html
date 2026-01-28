@@ -7,12 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
-    
+
     <style>
         * {
             font-family: 'Inter', 'Poppins', sans-serif;
@@ -191,49 +191,49 @@
             50% { transform: scale(1.3); }
             100% { transform: scale(1); }
         }
-        
+
         /* Мобильные стили */
         @media (max-width: 768px) {
             .mobile-hidden {
                 display: none !important;
             }
-            
+
             .mobile-only {
                 display: block !important;
             }
-            
+
             .mobile-flex-col {
                 flex-direction: column;
             }
-            
+
             .mobile-p-3 {
                 padding: 0.75rem;
             }
-            
+
             .mobile-p-4 {
                 padding: 1rem;
             }
-            
+
             .mobile-text-sm {
                 font-size: 0.875rem;
             }
-            
+
             .mobile-text-lg {
                 font-size: 1.125rem;
             }
-            
+
             .mobile-rounded-xl {
                 border-radius: 0.75rem;
             }
-            
+
             .mobile-h-12 {
                 height: 3rem;
             }
-            
+
             .mobile-w-12 {
                 width: 3rem;
             }
-            
+
             .mobile-bottom-nav {
                 position: fixed;
                 bottom: 0;
@@ -245,7 +245,7 @@
                 z-index: 50;
                 padding: 0.5rem;
             }
-            
+
             .mobile-bottom-nav-btn {
                 flex: 1;
                 padding: 0.75rem;
@@ -254,12 +254,12 @@
                 font-size: 0.75rem;
                 transition: all 0.2s;
             }
-            
+
             .mobile-bottom-nav-btn.active {
                 background: rgba(59, 130, 246, 0.2);
                 color: #60a5fa;
             }
-            
+
             .mobile-header {
                 position: sticky;
                 top: 0;
@@ -269,12 +269,12 @@
                 backdrop-filter: blur(20px);
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             }
-            
+
             .mobile-content {
                 padding-bottom: 5rem;
                 padding-top: 1rem;
             }
-            
+
             .mobile-modal {
                 position: fixed;
                 top: 0;
@@ -285,12 +285,12 @@
                 z-index: 100;
                 overflow-y: auto;
             }
-            
+
             .mobile-modal-content {
                 min-height: 100vh;
                 padding: 1rem;
             }
-            
+
             .mobile-back-btn {
                 position: absolute;
                 top: 1rem;
@@ -305,7 +305,7 @@
                 align-items: center;
                 justify-content: center;
             }
-            
+
             .mobile-chat-input {
                 position: fixed;
                 bottom: 4rem;
@@ -317,12 +317,12 @@
                 border-top: 1px solid rgba(255, 255, 255, 0.1);
                 z-index: 40;
             }
-            
+
             .mobile-messages-container {
                 padding-bottom: 8rem;
                 padding-top: 1rem;
             }
-            
+
             .mobile-fab {
                 position: fixed;
                 bottom: 6rem;
@@ -338,7 +338,7 @@
                 box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
                 z-index: 45;
             }
-            
+
             .mobile-sidebar {
                 position: fixed;
                 top: 0;
@@ -352,11 +352,11 @@
                 transform: translateX(-100%);
                 transition: transform 0.3s ease;
             }
-            
+
             .mobile-sidebar.open {
                 transform: translateX(0);
             }
-            
+
             .mobile-sidebar-overlay {
                 position: fixed;
                 top: 0;
@@ -369,104 +369,104 @@
                 pointer-events: none;
                 transition: opacity 0.3s ease;
             }
-            
+
             .mobile-sidebar-overlay.open {
                 opacity: 1;
                 pointer-events: all;
             }
-            
+
             .mobile-grid-2 {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
+
             .mobile-grid-3 {
                 grid-template-columns: repeat(3, 1fr);
             }
-            
+
             .mobile-grid-4 {
                 grid-template-columns: repeat(4, 1fr);
             }
         }
-        
+
         @media (min-width: 769px) {
             .mobile-only {
                 display: none !important;
             }
-            
+
             .desktop-hidden {
                 display: none !important;
             }
         }
-        
+
         /* Анимации */
         .slide-in-right {
             animation: slideInRight 0.3s ease;
         }
-        
+
         @keyframes slideInRight {
             from { transform: translateX(100%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
-        
+
         .slide-in-left {
             animation: slideInLeft 0.3s ease;
         }
-        
+
         @keyframes slideInLeft {
             from { transform: translateX(-100%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
-        
+
         .scale-in {
             animation: scaleIn 0.3s ease;
         }
-        
+
         @keyframes scaleIn {
             from { transform: scale(0.9); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
-        
+
         /* Улучшения для тапов */
         .tap-highlight {
             transition: transform 0.1s ease, background 0.2s ease;
         }
-        
+
         .tap-highlight:active {
             transform: scale(0.97);
             background: rgba(255, 255, 255, 0.05);
         }
-        
+
         /* Плавная прокрутка */
         html {
             scroll-behavior: smooth;
         }
-        
+
         /* Оптимизация для мобилок */
         input, textarea, button {
             font-size: 16px !important; /* Предотвращает масштабирование в iOS */
         }
-        
+
         /* Стили для длинных текстов */
         .text-ellipsis {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
-        
+
         .line-clamp-2 {
             display: -webkit-box;
             -webkit-line-clamp: 2;
-            -webkit-box-oriment: vertical;
+            -webkit-box-orient: vertical;
             overflow: hidden;
         }
-        
+
         .line-clamp-3 {
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
-        
+
         /* Оптимизация изображений */
         img, video {
             max-width: 100%;
@@ -551,7 +551,7 @@
             </div>
         </div>
     </div>
-    
+
     <div id="mobile-sidebar-overlay" class="mobile-sidebar-overlay mobile-only"></div>
 
     <!-- Основной контейнер -->
@@ -570,4 +570,2599 @@
                 <!-- Вкладки -->
                 <div class="flex mb-4 bg-slate-800 rounded-xl p-1">
                     <button id="mobile-login-tab" class="flex-1 py-3 rounded-lg font-medium text-sm tab-active tap-highlight">Вход</button>
-   
+                    <button id="mobile-register-tab" class="flex-1 py-3 rounded-lg font-medium text-sm tab-inactive tap-highlight">Регистрация</button>
+                </div>
+
+                <!-- Форма входа -->
+                <div id="mobile-login-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Никнейм (@username)</label>
+                        <input type="text" id="mobile-login-username" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="@karkarich">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Пароль</label>
+                        <input type="password" id="mobile-login-password" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="••••••••">
+                    </div>
+                    <button id="mobile-login-btn" class="w-full btn-primary text-white py-3 rounded-xl font-bold mt-4 tap-highlight">
+                        Войти в аккаунт
+                    </button>
+                </div>
+
+                <!-- Форма регистрации -->
+                <div id="mobile-register-form" class="space-y-4 hidden">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Выберите клан</label>
+                        <div class="grid mobile-grid-4 gap-2" id="mobile-clan-selection">
+                            <button type="button" data-clan="🦁" class="clan-btn p-3 rounded-xl bg-slate-800 hover:bg-slate-700 transition text-lg tap-highlight">🦁</button>
+                            <button type="button" data-clan="🦅" class="clan-btn p-3 rounded-xl bg-slate-800 hover:bg-slate-700 transition text-lg tap-highlight">🦅</button>
+                            <button type="button" data-clan="🐺" class="clan-btn p-3 rounded-xl bg-slate-800 hover:bg-slate-700 transition text-lg tap-highlight">🐺</button>
+                            <button type="button" data-clan="🐻" class="clan-btn p-3 rounded-xl bg-slate-800 hover:bg-slate-700 transition text-lg tap-highlight">🐻</button>
+                            <button type="button" data-clan="🦊" class="clan-btn p-3 rounded-xl bg-slate-800 hover:bg-slate-700 transition text-lg tap-highlight">🦊</button>
+                            <button type="button" data-clan="🐯" class="clan-btn p-3 rounded-xl bg-slate-800 hover:bg-slate-700 transition text-lg tap-highlight">🐯</button>
+                            <button type="button" data-clan="🦉" class="clan-btn p-3 rounded-xl bg-slate-800 hover:bg-slate-700 transition text-lg tap-highlight">🦉</button>
+                            <button type="button" data-clan="🐍" class="clan-btn p-3 rounded-xl bg-slate-800 hover:bg-slate-700 transition text-lg tap-highlight">🐍</button>
+                        </div>
+                        <p class="text-xs text-red-400 mt-2 hidden" id="mobile-clan-error">Пожалуйста, выберите клан</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Никнейм</label>
+                        <input type="text" id="mobile-reg-username" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="@username">
+                        <p class="text-xs text-gray-400 mt-1">Начинается с @, только буквы, цифры, _ и -</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Пароль</label>
+                        <input type="password" id="mobile-reg-password" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Минимум 8 символов">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Имя (необязательно)</label>
+                            <input type="text" id="mobile-reg-firstname" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Фамилия (необязательно)</label>
+                            <input type="text" id="mobile-reg-lastname" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                    </div>
+
+                    <button id="mobile-register-btn" class="w-full btn-primary text-white py-3 rounded-xl font-bold mt-4 tap-highlight">
+                        Создать аккаунт
+                    </button>
+                </div>
+
+                <p class="text-center text-gray-400 mt-6 text-xs">
+                    Создавая аккаунт, вы соглашаетесь с нашими правилами
+                </p>
+            </div>
+        </div>
+
+        <!-- Основное приложение (мобильная версия) -->
+        <div id="main-app" class="hidden w-full h-screen flex flex-col">
+            <!-- Мобильный заголовок -->
+            <div class="mobile-header flex items-center justify-between">
+                <button id="mobile-menu-btn" class="w-10 h-10 rounded-lg bg-slate-800/50 flex items-center justify-center tap-highlight">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <div class="text-center flex-1 px-4">
+                    <h1 class="text-lg font-bold gradient-text" id="mobile-current-section">Лента</h1>
+                    <p class="text-xs text-gray-400" id="mobile-section-description">Последние обновления</p>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <div class="bg-slate-800/50 rounded-full px-3 py-1.5 flex items-center space-x-1.5">
+                        <span id="mobile-header-balance" class="text-yellow-300 font-bold text-sm">0 C</span>
+                        <span class="text-blue-300">🤠</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Контейнер для контента -->
+            <div id="mobile-content" class="flex-1 overflow-y-auto mobile-content">
+                <!-- Лента (мобильная) -->
+                <div id="mobile-feed-content" class="section-content section-active p-4">
+                    <!-- Создание поста -->
+                    <div class="glassmorphism rounded-2xl p-4 mb-4">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center">
+                                <span id="mobile-user-avatar">🤠</span>
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-bold text-sm" id="mobile-user-name">Вы</div>
+                                <div class="text-xs text-gray-400">Создать пост</div>
+                            </div>
+                        </div>
+
+                        <textarea id="mobile-post-content" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 h-24 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-3 text-base" placeholder="Что у вас нового, ковбой?"></textarea>
+
+                        <div class="mb-3">
+                            <div class="flex space-x-2">
+                                <label class="cursor-pointer flex-1">
+                                    <input type="file" id="mobile-post-media" class="hidden" accept="image/*,video/*" multiple>
+                                    <div class="px-3 py-2 bg-slate-800 hover:bg-slate-700 rounded-xl flex items-center justify-center space-x-2 text-sm tap-highlight">
+                                        <i class="fas fa-image"></i>
+                                        <span>Фото/Видео</span>
+                                    </div>
+                                </label>
+                                <button id="mobile-clear-media" class="px-3 py-2 bg-red-800/30 hover:bg-red-700/40 rounded-xl tap-highlight">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                            <div id="mobile-media-preview" class="mt-3 grid mobile-grid-3 gap-2 hidden">
+                                <!-- Превью медиафайлов -->
+                            </div>
+                        </div>
+
+                        <button id="mobile-create-post-btn" class="w-full btn-primary py-3 rounded-xl font-bold text-sm tap-highlight">
+                            Опубликовать
+                        </button>
+                    </div>
+
+                    <!-- Посты -->
+                    <div id="mobile-posts-container">
+                        <!-- Посты будут здесь -->
+                    </div>
+                </div>
+
+                <!-- Мессенджер (мобильная версия) -->
+                <div id="mobile-messenger-content" class="section-content h-full">
+                    <!-- Список чатов -->
+                    <div class="h-full">
+                        <div class="p-4">
+                            <div class="flex items-center justify-between mb-4">
+                                <h2 class="text-xl font-bold">Сообщения</h2>
+                                <button id="mobile-new-chat-btn" class="w-10 h-10 rounded-full bg-blue-600 hover:bg-blue-700 flex items-center justify-center tap-highlight">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+
+                            <div id="mobile-chats-list" class="space-y-3">
+                                <!-- Список чатов -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Окно чата (отдельная страница) -->
+                    <div id="mobile-chat-window" class="hidden fixed inset-0 z-50 bg-slate-900">
+                        <div class="h-full flex flex-col">
+                            <!-- Заголовок чата -->
+                            <div class="mobile-header flex items-center p-4 border-b border-slate-700">
+                                <button id="mobile-back-to-chats" class="mobile-back-btn tap-highlight">
+                                    <i class="fas fa-arrow-left"></i>
+                                </button>
+                                <div id="mobile-chat-header" class="text-center flex-1 px-12">
+                                    <!-- Заполнится динамически -->
+                                </div>
+                            </div>
+
+                            <!-- Сообщения -->
+                            <div id="mobile-messages-container" class="flex-1 overflow-y-auto p-4 mobile-messages-container">
+                                <!-- Сообщения будут здесь -->
+                            </div>
+
+                            <!-- Ввод сообщения -->
+                            <div class="mobile-chat-input">
+                                <div id="mobile-typing-indicator" class="typing-indicator hidden mb-2">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <label class="cursor-pointer">
+                                        <input type="file" id="mobile-chat-media" class="hidden" accept="image/*,video/*">
+                                        <div class="w-10 h-10 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center tap-highlight">
+                                            <i class="fas fa-image"></i>
+                                        </div>
+                                    </label>
+                                    <input type="text" id="mobile-message-input" class="flex-1 bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-base" placeholder="Сообщение...">
+                                    <button id="mobile-send-message-btn" class="btn-primary px-4 rounded-xl font-bold tap-highlight">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Профиль (мобильная версия) -->
+                <div id="mobile-profile-content" class="section-content p-4">
+                    <div class="glassmorphism rounded-2xl overflow-hidden mb-4">
+                        <div class="h-32 bg-gradient-to-r from-blue-900/50 to-cyan-900/50 relative"></div>
+                        <div class="p-4 relative">
+                            <div class="absolute -top-8 left-4">
+                                <div id="mobile-profile-avatar" class="w-16 h-16 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center justify-center text-2xl border-4 border-slate-900">
+                                    <!-- Аватар -->
+                                </div>
+                            </div>
+                            <div class="ml-20">
+                                <h2 id="mobile-profile-name" class="text-lg font-bold line-clamp-1"></h2>
+                                <p id="mobile-profile-username" class="text-blue-300 text-sm line-clamp-1"></p>
+                                <div class="flex items-center space-x-2 mt-1">
+                                    <div id="mobile-profile-clan" class="px-2 py-0.5 bg-slate-800 rounded-full text-xs"></div>
+                                    <div class="text-yellow-300 font-bold" id="mobile-profile-balance"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-3 mb-4">
+                        <div class="glassmorphism rounded-xl p-3 text-center">
+                            <div class="text-blue-400 text-lg mb-1">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="text-xs text-gray-400">Друзья</div>
+                            <div id="mobile-friends-count" class="font-bold text-sm">0</div>
+                        </div>
+                        <div class="glassmorphism rounded-xl p-3 text-center">
+                            <div class="text-blue-400 text-lg mb-1">
+                                <i class="fas fa-newspaper"></i>
+                            </div>
+                            <div class="text-xs text-gray-400">Посты</div>
+                            <div id="mobile-posts-count" class="font-bold text-sm">0</div>
+                        </div>
+                        <div class="glassmorphism rounded-xl p-3 text-center">
+                            <div class="text-blue-400 text-lg mb-1">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <div class="text-xs text-gray-400">Подарки</div>
+                            <div id="mobile-gifts-count" class="font-bold text-sm">0</div>
+                        </div>
+                    </div>
+
+                    <!-- Витрина подарков -->
+                    <div class="glassmorphism rounded-2xl p-4 mb-4">
+                        <h3 class="text-lg font-bold mb-3">🎁 Витрина подарков</h3>
+                        <div id="mobile-profile-showcase" class="grid mobile-grid-4 gap-3">
+                            <!-- Витрина подарков -->
+                        </div>
+                        <p id="mobile-no-showcase" class="text-gray-400 text-center py-4 text-sm">На витрине пока нет подарков</p>
+                    </div>
+
+                    <!-- Инвентарь -->
+                    <div class="glassmorphism rounded-2xl p-4 mb-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-lg font-bold">🎒 Мой инвентарь</h3>
+                            <button data-section="shop" class="text-blue-400 text-sm flex items-center tap-highlight">
+                                <i class="fas fa-store mr-1"></i> Магазин
+                            </button>
+                        </div>
+                        <div id="mobile-inventory-items" class="space-y-2 max-h-60 overflow-y-auto">
+                            <!-- Инвентарь -->
+                        </div>
+                    </div>
+
+                    <!-- Посты пользователя -->
+                    <div class="glassmorphism rounded-2xl p-4">
+                        <h3 class="text-lg font-bold mb-3">📝 Мои посты</h3>
+                        <div id="mobile-profile-posts" class="space-y-3">
+                            <!-- Посты пользователя -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Друзья (мобильная версия) -->
+                <div id="mobile-friends-content" class="section-content p-4">
+                    <div class="glassmorphism rounded-2xl p-4">
+                        <div class="text-center mb-6">
+                            <div class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center text-2xl mb-4 mx-auto">
+                                <i class="fas fa-users text-blue-400"></i>
+                            </div>
+                            <h2 class="text-xl font-bold mb-2">Друзья</h2>
+                            <p class="text-gray-400 text-sm">Найдите новых друзей и общайтесь</p>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="flex space-x-2">
+                                <input type="text" id="mobile-search-friend-input" class="flex-1 bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Поиск по никнейму...">
+                                <button id="mobile-search-friend-btn" class="btn-primary px-4 rounded-xl font-bold text-sm tap-highlight">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="mobile-search-results" class="hidden mb-4">
+                            <!-- Результаты поиска -->
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="glassmorphism rounded-xl p-3">
+                                <h3 class="text-md font-bold mb-3 text-blue-300">Ваши друзья</h3>
+                                <div id="mobile-friends-list" class="space-y-2">
+                                    <!-- Список друзей -->
+                                </div>
+                            </div>
+
+                            <div class="glassmorphism rounded-xl p-3">
+                                <h3 class="text-md font-bold mb-3 text-yellow-300">Заявки в друзья</h3>
+                                <div id="mobile-friend-requests-list" class="space-y-2">
+                                    <!-- Заявки -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Магазин (мобильная версия) -->
+                <div id="mobile-shop-content" class="section-content p-4">
+                    <div class="glassmorphism rounded-2xl p-4">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <h2 class="text-xl font-bold gradient-text">🎁 Магазин</h2>
+                                <p class="text-gray-400 text-sm">Купите подарки для себя или друзей</p>
+                            </div>
+                            <div class="bg-slate-800/50 px-4 py-2 rounded-xl">
+                                <span class="text-gray-400 text-xs mr-1">Баланс:</span>
+                                <span id="mobile-shop-balance" class="text-lg font-bold text-yellow-300">0 C</span>
+                            </div>
+                        </div>
+
+                        <div id="mobile-gifts-shop" class="grid mobile-grid-2 gap-4">
+                            <!-- Товары магазина -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Переводы (мобильная версия) -->
+                <div id="mobile-transfers-content" class="section-content p-4">
+                    <div class="glassmorphism rounded-2xl p-4">
+                        <div class="text-center mb-6">
+                            <div class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center text-2xl mb-4 mx-auto">
+                                <i class="fas fa-money-bill-transfer text-blue-400"></i>
+                            </div>
+                            <h2 class="text-xl font-bold mb-2">Переводы Cowboy</h2>
+                            <p class="text-gray-400 text-sm">Отправляйте валюту друзьям и знакомым</p>
+                        </div>
+
+                        <div class="bg-slate-800/30 rounded-xl p-4 mb-6">
+                            <h4 class="font-bold mb-4 text-lg">Новый перевод</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Никнейм получателя</label>
+                                    <input type="text" id="mobile-transfer-to" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="@username">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Сумма (C)</label>
+                                    <input type="number" id="mobile-transfer-amount" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" min="1" placeholder="10">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Сообщение (необязательно)</label>
+                                    <input type="text" id="mobile-transfer-message" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="За что перевод">
+                                </div>
+                                <button id="mobile-make-transfer-btn" class="w-full btn-primary py-3 rounded-xl font-bold tap-highlight">
+                                    Отправить перевод
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold mb-4 text-lg">📊 История переводов</h4>
+                            <div id="mobile-transfers-history" class="space-y-3 max-h-80 overflow-y-auto">
+                                <!-- История -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Админ-панель (мобильная версия) -->
+                <div id="mobile-admin-content" class="section-content p-4">
+                    <div class="glassmorphism rounded-2xl p-4">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-red-600 to-pink-500 flex items-center justify-center text-xl mr-3">
+                                👑
+                            </div>
+                            <div>
+                                <h2 class="text-xl font-bold gradient-text">Админ-панель</h2>
+                                <p class="text-gray-400 text-sm">Управление системой</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="bg-slate-800/30 rounded-xl p-4">
+                                <h3 class="font-bold mb-4 text-lg">💰 Изменить баланс</h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Никнейм пользователя</label>
+                                        <input type="text" id="mobile-admin-username" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="@username">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Новый баланс (C)</label>
+                                        <input type="number" id="mobile-admin-balance" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="1000">
+                                    </div>
+                                    <button id="mobile-admin-set-balance-btn" class="w-full bg-gradient-to-r from-red-600 to-pink-500 hover:from-red-700 hover:to-pink-600 py-3 rounded-xl font-bold tap-highlight">
+                                        Установить баланс
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-800/30 rounded-xl p-4">
+                                <h3 class="font-bold mb-4 text-lg">🎯 Раздача клану</h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Выберите клан</label>
+                                        <select id="mobile-admin-clan" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                            <option value="🦁">🦁 Львы</option>
+                                            <option value="🦅">🦅 Орлы</option>
+                                            <option value="🐺">🐺 Волки</option>
+                                            <option value="🐻">🐻 Медведи</option>
+                                            <option value="🦊">🦊 Лисы</option>
+                                            <option value="🐯">🐯 Тигры</option>
+                                            <option value="🦉">🦉 Совы</option>
+                                            <option value="🐍">🐍 Змеи</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Сумма каждому участнику (C)</label>
+                                        <input type="number" id="mobile-admin-clan-amount" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="100">
+                                    </div>
+                                    <button id="mobile-admin-distribute-btn" class="w-full bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-700 hover:to-emerald-600 py-3 rounded-xl font-bold tap-highlight">
+                                        Раздать клану
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Мобильная навигация внизу -->
+            <div class="mobile-bottom-nav">
+                <div class="flex justify-between">
+                    <button data-section="feed" class="mobile-bottom-nav-btn active flex flex-col items-center tap-highlight">
+                        <i class="fas fa-newspaper text-lg mb-1"></i>
+                        <span>Лента</span>
+                    </button>
+                    <button data-section="messenger" class="mobile-bottom-nav-btn flex flex-col items-center tap-highlight">
+                        <i class="fas fa-comments text-lg mb-1"></i>
+                        <span>Чат</span>
+                    </button>
+                    <button data-section="profile" class="mobile-bottom-nav-btn flex flex-col items-center tap-highlight">
+                        <i class="fas fa-user text-lg mb-1"></i>
+                        <span>Профиль</span>
+                    </button>
+                    <button data-section="friends" class="mobile-bottom-nav-btn flex flex-col items-center tap-highlight">
+                        <i class="fas fa-users text-lg mb-1"></i>
+                        <span>Друзья</span>
+                    </button>
+                    <button data-section="shop" class="mobile-bottom-nav-btn flex flex-col items-center tap-highlight">
+                        <i class="fas fa-store text-lg mb-1"></i>
+                        <span>Магазин</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- FAB для быстрого создания поста -->
+            <button id="mobile-fab" class="mobile-fab tap-highlight hidden">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Модальные окна -->
+    <div id="modals-container"></div>
+
+    <script>
+        // ===========================================
+        // ИНИЦИАЛИЗАЦИЯ FIREBASE
+        // ===========================================
+        // Конфигурация Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDVmLbWo9zabxoh_nBmin3ft55idyis",
+            authDomain: "cowboy-messenger-8a9ab.firebaseapp.com",
+            projectId: "cowboy-messenger-8a9ab",
+            storageBucket: "cowboy-messenger-8a9ab.firebasestorage.app",
+            messagingSenderId: "988951372605",
+            appId: "1:988951372605:web:d66917e00f0c8c0c142b54",
+            measurementId: "G-TTEXNYQ6E8"
+        };
+
+        // Инициализация Firebase
+        let firebaseApp, firestoreDB, firebaseAuth;
+        let onlineMode = false;
+
+        try {
+            firebaseApp = firebase.initializeApp(firebaseConfig);
+            firestoreDB = firebase.firestore();
+            firebaseAuth = firebase.auth();
+            onlineMode = true;
+            console.log("✅ Firebase подключен! Режим: ONLINE");
+        } catch (error) {
+            console.error("❌ Firebase не подключен, работаем в OFFLINE режиме:", error);
+            onlineMode = false;
+        }
+
+        // ===========================================
+        // ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ И КОНСТАНТЫ
+        // ===========================================
+        const isMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        let currentUser = null;
+        let selectedMedia = [];
+        let activeChatId = null;
+        let activeChatUser = null;
+        let allUsers = []; // Все пользователи для статистики кланов
+
+        const state = {
+            selectedClan: null,
+            activeModal: null,
+            currentSection: 'feed',
+            isMobile: isMobile,
+            onlineMode: onlineMode
+        };
+
+        // Ключи локального хранилища
+        const LOCAL_STORAGE_KEYS = {
+            USERS: 'cowboy_users',
+            POSTS: 'cowboy_posts',
+            CHATS: 'cowboy_chats',
+            MESSAGES: 'cowboy_messages',
+            GIFTS: 'cowboy_gifts',
+            TRANSACTIONS: 'cowboy_transactions',
+            FRIEND_REQUESTS: 'cowboy_friend_requests',
+            FRIENDSHIPS: 'cowboy_friendships',
+            NOTIFICATIONS: 'cowboy_notifications',
+            CURRENT_USER: 'cowboy_current_user'
+        };
+
+        // Предзаполненные подарки
+        const DEFAULT_GIFTS = [
+            { id: 1, name: "🌹 Роза", price: 10, emoji: "🌹", description: "Классический подарок", purchases: 0, popular: 50 },
+            { id: 2, name: "🚗 Машина", price: 500, emoji: "🚗", description: "Стильный транспорт", purchases: 0, popular: 30 },
+            { id: 3, name: "🚀 Ракета", price: 1000, emoji: "🚀", description: "Для космических амбиций", purchases: 0, popular: 20 },
+            { id: 4, name: "🏆 Кубок", price: 300, emoji: "🏆", description: "За победы", purchases: 0, popular: 40 },
+            { id: 5, name: "💎 Алмаз", price: 800, emoji: "💎", description: "Роскошный подарок", purchases: 0, popular: 25 },
+            { id: 6, name: "🎸 Гитара", price: 200, emoji: "🎸", description: "Музыкальный подарок", purchases: 0, popular: 35 },
+            { id: 7, name: "👑 Корона", price: 1500, emoji: "👑", description: "Королевский подарок", purchases: 0, popular: 15 },
+            { id: 8, name: "🛡️ Щит", price: 400, emoji: "🛡️", description: "Для защиты", purchases: 0, popular: 28 }
+        ];
+
+        // ===========================================
+        // ИНИЦИАЛИЗАЦИЯ ПРИЛОЖЕНИЯ
+        // ===========================================
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("🚀 Документ загружен, устройство:", isMobile ? "Мобильное" : "Десктоп");
+
+            // Инициализируем данные
+            initData();
+
+            // Проверяем авторизацию
+            checkAuth();
+
+            // Настраиваем обработчики событий
+            setTimeout(() => {
+                setupEventListeners();
+            }, 100);
+        });
+
+        function initData() {
+            console.log("📦 Инициализация данных...");
+
+            // Инициализируем подарки если их нет
+            const savedGifts = localStorage.getItem(LOCAL_STORAGE_KEYS.GIFTS);
+            if (!savedGifts) {
+                localStorage.setItem(LOCAL_STORAGE_KEYS.GIFTS, JSON.stringify(DEFAULT_GIFTS));
+                console.log("🎁 Подарки инициализированы");
+            }
+
+            // Создаем тестовых пользователей, если пусто
+            const savedUsers = localStorage.getItem(LOCAL_STORAGE_KEYS.USERS);
+            if (!savedUsers) {
+                const testUsers = [
+                    {
+                        id: 1,
+                        username: '@karkarich',
+                        password: 'admin123',
+                        firstName: 'Admin',
+                        lastName: '',
+                        clan: '👑',
+                        balance: 1000000000,
+                        avatar: '👑',
+                        createdAt: new Date().toISOString(),
+                        inventory: [],
+                        showcase: [],
+                        posts: [],
+                        friends: [],
+                        isAdmin: true
+                    },
+                    {
+                        id: 2,
+                        username: '@cowboy1',
+                        password: '12345678',
+                        firstName: 'John',
+                        lastName: 'Doe',
+                        clan: '🦁',
+                        balance: 1500,
+                        avatar: '🦁',
+                        createdAt: new Date().toISOString(),
+                        inventory: [],
+                        showcase: [],
+                        posts: [],
+                        friends: []
+                    },
+                    {
+                        id: 3,
+                        username: '@cowboy2',
+                        password: '12345678',
+                        firstName: 'Jane',
+                        lastName: 'Smith',
+                        clan: '🐺',
+                        balance: 800,
+                        avatar: '🐺',
+                        createdAt: new Date().toISOString(),
+                        inventory: [],
+                        showcase: [],
+                        posts: [],
+                        friends: []
+                    },
+                    {
+                        id: 4,
+                        username: '@cowboy3',
+                        password: '12345678',
+                        firstName: 'Mike',
+                        lastName: 'Johnson',
+                        clan: '🦅',
+                        balance: 1200,
+                        avatar: '🦅',
+                        createdAt: new Date().toISOString(),
+                        inventory: [],
+                        showcase: [],
+                        posts: [],
+                        friends: []
+                    },
+                    {
+                        id: 5,
+                        username: '@cowboy4',
+                        password: '12345678',
+                        firstName: 'Sarah',
+                        lastName: 'Williams',
+                        clan: '🐻',
+                        balance: 900,
+                        avatar: '🐻',
+                        createdAt: new Date().toISOString(),
+                        inventory: [],
+                        showcase: [],
+                        posts: [],
+                        friends: []
+                    }
+                ];
+                localStorage.setItem(LOCAL_STORAGE_KEYS.USERS, JSON.stringify(testUsers));
+                console.log("👥 Тестовые пользователи созданы");
+            }
+
+            // Инициализируем посты, если пусто
+            const savedPosts = localStorage.getItem(LOCAL_STORAGE_KEYS.POSTS);
+            if (!savedPosts) {
+                const initialPosts = [
+                    {
+                        id: 1,
+                        userId: 1,
+                        username: '@karkarich',
+                        userClan: '👑',
+                        content: 'Добро пожаловать в Cowboy Messenger! 🎉\nЭто лучший мессенджер для настоящих ковбоев! 🤠',
+                        media: [],
+                        likes: [2, 3, 4],
+                        comments: [
+                            {
+                                id: 1,
+                                userId: 2,
+                                username: '@cowboy1',
+                                userClan: '🦁',
+                                content: 'Круто! Жду новых функций!',
+                                createdAt: new Date(Date.now() - 1800000).toISOString()
+                            },
+                            {
+                                id: 2,
+                                userId: 3,
+                                username: '@cowboy2',
+                                userClan: '🐺',
+                                content: 'Отличное приложение!',
+                                createdAt: new Date(Date.now() - 3600000).toISOString()
+                            }
+                        ],
+                        likesCount: 3,
+                        commentsCount: 2,
+                        createdAt: new Date(Date.now() - 86400000).toISOString()
+                    },
+                    {
+                        id: 2,
+                        userId: 2,
+                        username: '@cowboy1',
+                        userClan: '🦁',
+                        content: 'Сегодня отличный день для новых приключений! 🌄\nКто со мной?',
+                        media: [],
+                        likes: [1, 3],
+                        comments: [
+                            {
+                                id: 3,
+                                userId: 3,
+                                username: '@cowboy2',
+                                userClan: '🐺',
+                                content: 'Я с тобой! 🚀',
+                                createdAt: new Date(Date.now() - 7200000).toISOString()
+                            }
+                        ],
+                        likesCount: 2,
+                        commentsCount: 1,
+                        createdAt: new Date(Date.now() - 43200000).toISOString()
+                    },
+                    {
+                        id: 3,
+                        userId: 3,
+                        username: '@cowboy2',
+                        userClan: '🐺',
+                        content: 'Только что купил новый подарок в магазине! 🎁\nСпасибо за крутой функционал!',
+                        media: [],
+                        likes: [1, 2, 4, 5],
+                        comments: [],
+                        likesCount: 4,
+                        commentsCount: 0,
+                        createdAt: new Date(Date.now() - 21600000).toISOString()
+                    }
+                ];
+                localStorage.setItem(LOCAL_STORAGE_KEYS.POSTS, JSON.stringify(initialPosts));
+                console.log("📝 Начальные посты созданы");
+            }
+
+            // Загружаем всех пользователей для статистики
+            loadAllUsers();
+        }
+
+        function loadAllUsers() {
+            if (onlineMode) {
+                // В онлайн режиме будем загружать позже
+                allUsers = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.USERS)) || [];
+            } else {
+                allUsers = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.USERS)) || [];
+            }
+            console.log("👥 Загружено пользователей:", allUsers.length);
+        }
+
+        function checkAuth() {
+            // Проверяем Firebase авторизацию
+            if (onlineMode && firebaseAuth) {
+                firebaseAuth.onAuthStateChanged((user) => {
+                    if (user) {
+                        console.log("🔥 Firebase пользователь найден:", user.email);
+                        loadUserFromFirestore(user.uid);
+                    } else {
+                        console.log("🔥 Firebase пользователь не авторизован");
+                        checkLocalUser();
+                    }
+                });
+            } else {
+                // Проверяем локального пользователя
+                checkLocalUser();
+            }
+        }
+
+        async function loadUserFromFirestore(userId) {
+            try {
+                const userDoc = await firestoreDB.collection('users').doc(userId).get();
+                if (userDoc.exists) {
+                    currentUser = userDoc.data();
+                    currentUser.id = userId;
+                    localStorage.setItem(LOCAL_STORAGE_KEYS.CURRENT_USER, JSON.stringify(currentUser));
+
+                    console.log("✅ Пользователь загружен из Firestore:", currentUser.username);
+                    showMobileApp();
+                } else {
+                    console.log("❌ Пользователь не найден в Firestore");
+                    checkLocalUser();
+                }
+            } catch (error) {
+                console.error("❌ Ошибка при загрузке пользователя из Firestore:", error);
+                checkLocalUser();
+            }
+        }
+
+        function checkLocalUser() {
+            const savedUser = localStorage.getItem(LOCAL_STORAGE_KEYS.CURRENT_USER);
+            if (savedUser) {
+                try {
+                    currentUser = JSON.parse(savedUser);
+                    console.log("📱 Локальный пользователь найден:", currentUser?.username);
+                    showMobileApp();
+                } catch (e) {
+                    console.error("❌ Ошибка при загрузке пользователя:", e);
+                    showMobileAuth();
+                }
+            } else {
+                console.log("👤 Нет сохраненного пользователя");
+                showMobileAuth();
+            }
+        }
+
+        function showMobileAuth() {
+            const authScreen = document.getElementById('auth-screen');
+            const mainApp = document.getElementById('main-app');
+
+            if (authScreen) authScreen.classList.remove('hidden');
+            if (mainApp) mainApp.classList.add('hidden');
+
+            // Показываем ленту при загрузке
+            if (document.getElementById('mobile-feed-content')) {
+                document.getElementById('mobile-feed-content').classList.add('section-active');
+            }
+        }
+
+        function showMobileApp() {
+            const authScreen = document.getElementById('auth-screen');
+            const mainApp = document.getElementById('main-app');
+
+            if (authScreen) authScreen.classList.add('hidden');
+            if (mainApp) mainApp.classList.remove('hidden');
+
+            // Обновляем UI пользователя
+            updateUserUI();
+
+            // Загружаем данные
+            loadFeed();
+            updateClanLeaderboard();
+            updateFriendsList();
+            updateShop();
+
+            // Показываем/скрываем админ кнопку
+            const adminBtn = document.getElementById('mobile-admin-btn');
+            if (adminBtn) {
+                if (currentUser && currentUser.isAdmin) {
+                    adminBtn.classList.remove('hidden');
+                } else {
+                    adminBtn.classList.add('hidden');
+                }
+            }
+        }
+
+        function setupEventListeners() {
+            console.log("🔧 Настройка обработчиков событий...");
+
+            // Мобильное меню
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const closeSidebarBtn = document.getElementById('mobile-close-sidebar');
+            const sidebar = document.getElementById('mobile-sidebar');
+            const sidebarOverlay = document.getElementById('mobile-sidebar-overlay');
+
+            if (menuBtn) {
+                menuBtn.addEventListener('click', () => {
+                    sidebar.classList.add('open');
+                    sidebarOverlay.classList.add('open');
+                });
+            }
+
+            if (closeSidebarBtn) {
+                closeSidebarBtn.addEventListener('click', () => {
+                    sidebar.classList.remove('open');
+                    sidebarOverlay.classList.remove('open');
+                });
+            }
+
+            if (sidebarOverlay) {
+                sidebarOverlay.addEventListener('click', () => {
+                    sidebar.classList.remove('open');
+                    sidebarOverlay.classList.remove('open');
+                });
+            }
+
+            // Навигация по секциям
+            document.querySelectorAll('.nav-btn, .mobile-bottom-nav-btn, [data-section]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const section = this.getAttribute('data-section');
+                    if (section) {
+                        switchSection(section);
+                    }
+                });
+            });
+
+            // Выход из аккаунта
+            const logoutBtn = document.getElementById('mobile-logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', () => {
+                    localStorage.removeItem(LOCAL_STORAGE_KEYS.CURRENT_USER);
+                    if (onlineMode && firebaseAuth) {
+                        firebaseAuth.signOut();
+                    }
+                    currentUser = null;
+                    showMobileAuth();
+                    showNotification('Вы вышли из аккаунта', 'success');
+                });
+            }
+
+            // Аутентификация
+            setupAuthListeners();
+
+            // Создание поста
+            const createPostBtn = document.getElementById('mobile-create-post-btn');
+            if (createPostBtn) {
+                createPostBtn.addEventListener('click', createPost);
+            }
+
+            // Загрузка медиа
+            const postMediaInput = document.getElementById('mobile-post-media');
+            if (postMediaInput) {
+                postMediaInput.addEventListener('change', handleMediaUpload);
+            }
+
+            // Очистка медиа
+            const clearMediaBtn = document.getElementById('mobile-clear-media');
+            if (clearMediaBtn) {
+                clearMediaBtn.addEventListener('click', () => {
+                    selectedMedia = [];
+                    document.getElementById('mobile-media-preview').innerHTML = '';
+                    document.getElementById('mobile-media-preview').classList.add('hidden');
+                });
+            }
+
+            // Поиск друзей
+            const searchFriendBtn = document.getElementById('mobile-search-friend-btn');
+            if (searchFriendBtn) {
+                searchFriendBtn.addEventListener('click', searchFriends);
+            }
+
+            // Переводы
+            const makeTransferBtn = document.getElementById('mobile-make-transfer-btn');
+            if (makeTransferBtn) {
+                makeTransferBtn.addEventListener('click', makeTransfer);
+            }
+
+            // Админ панель
+            const setBalanceBtn = document.getElementById('mobile-admin-set-balance-btn');
+            if (setBalanceBtn) {
+                setBalanceBtn.addEventListener('click', adminSetBalance);
+            }
+
+            const distributeBtn = document.getElementById('mobile-admin-distribute-btn');
+            if (distributeBtn) {
+                distributeBtn.addEventListener('click', adminDistributeToClan);
+            }
+
+            // Кнопка комментариев
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.comments-btn')) {
+                    const postId = parseInt(e.target.closest('.comments-btn').getAttribute('data-post-id'));
+                    showCommentsModal(postId);
+                }
+
+                if (e.target.closest('.like-btn')) {
+                    const postId = parseInt(e.target.closest('.like-btn').getAttribute('data-post-id'));
+                    toggleLike(postId);
+                }
+            });
+
+            console.log("✅ Все обработчики событий настроены");
+        }
+
+        function setupAuthListeners() {
+            // Переключение вкладок входа/регистрации
+            const loginTab = document.getElementById('mobile-login-tab');
+            const registerTab = document.getElementById('mobile-register-tab');
+            const loginForm = document.getElementById('mobile-login-form');
+            const registerForm = document.getElementById('mobile-register-form');
+
+            if (loginTab && registerTab) {
+                loginTab.addEventListener('click', () => {
+                    loginTab.classList.add('tab-active');
+                    loginTab.classList.remove('tab-inactive');
+                    registerTab.classList.add('tab-inactive');
+                    registerTab.classList.remove('tab-active');
+                    loginForm.classList.remove('hidden');
+                    registerForm.classList.add('hidden');
+                });
+
+                registerTab.addEventListener('click', () => {
+                    registerTab.classList.add('tab-active');
+                    registerTab.classList.remove('tab-inactive');
+                    loginTab.classList.add('tab-inactive');
+                    loginTab.classList.remove('tab-active');
+                    registerForm.classList.remove('hidden');
+                    loginForm.classList.add('hidden');
+                });
+            }
+
+            // Выбор клана
+            document.querySelectorAll('.clan-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const clan = this.getAttribute('data-clan');
+                    document.querySelectorAll('.clan-btn').forEach(b => {
+                        b.classList.remove('clan-selected');
+                    });
+                    this.classList.add('clan-selected');
+                    state.selectedClan = clan;
+                    document.getElementById('mobile-clan-error').classList.add('hidden');
+                });
+            });
+
+            // Кнопка входа
+            const loginBtn = document.getElementById('mobile-login-btn');
+            if (loginBtn) {
+                loginBtn.addEventListener('click', () => {
+                    const username = document.getElementById('mobile-login-username').value.trim();
+                    const password = document.getElementById('mobile-login-password').value.trim();
+
+                    if (!username || !password) {
+                        showNotification('Заполните все поля', 'error');
+                        return;
+                    }
+
+                    loginUser(username, password);
+                });
+            }
+
+            // Кнопка регистрации
+            const registerBtn = document.getElementById('mobile-register-btn');
+            if (registerBtn) {
+                registerBtn.addEventListener('click', () => {
+                    if (!state.selectedClan) {
+                        document.getElementById('mobile-clan-error').classList.remove('hidden');
+                        showNotification('Выберите клан', 'error');
+                        return;
+                    }
+
+                    const username = document.getElementById('mobile-reg-username').value.trim();
+                    const password = document.getElementById('mobile-reg-password').value.trim();
+                    const firstName = document.getElementById('mobile-reg-firstname').value.trim();
+                    const lastName = document.getElementById('mobile-reg-lastname').value.trim();
+
+                    if (!username || !password) {
+                        showNotification('Заполните обязательные поля', 'error');
+                        return;
+                    }
+
+                    if (username.charAt(0) !== '@') {
+                        showNotification('Никнейм должен начинаться с @', 'error');
+                        return;
+                    }
+
+                    if (password.length < 8) {
+                        showNotification('Пароль должен быть не менее 8 символов', 'error');
+                        return;
+                    }
+
+                    registerUser(username, password, firstName, lastName, state.selectedClan);
+                });
+            }
+        }
+
+        function loginUser(username, password) {
+            const users = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.USERS)) || [];
+            const user = users.find(u => u.username === username && u.password === password);
+
+            if (user) {
+                currentUser = user;
+                localStorage.setItem(LOCAL_STORAGE_KEYS.CURRENT_USER, JSON.stringify(currentUser));
+                showNotification('Вход выполнен успешно!', 'success');
+                showMobileApp();
+
+                // Обновляем статистику кланов
+                updateClanLeaderboard();
+            } else {
+                showNotification('Неверный логин или пароль', 'error');
+            }
+        }
+
+        function registerUser(username, password, firstName, lastName, clan) {
+            const users = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.USERS)) || [];
+
+            // Проверяем, существует ли пользователь
+            if (users.some(u => u.username === username)) {
+                showNotification('Пользователь с таким никнеймом уже существует', 'error');
+                return;
+            }
+
+            // Создаем нового пользователя
+            const newUser = {
+                id: Date.now(),
+                username: username,
+                password: password,
+                firstName: firstName || '',
+                lastName: lastName || '',
+                clan: clan,
+                balance: 1000, // Начальный баланс
+                avatar: clan,
+                createdAt: new Date().toISOString(),
+                inventory: [],
+                showcase: [],
+                posts: [],
+                friends: [],
+                isAdmin: username === '@karkarich'
+            };
+
+            users.push(newUser);
+            localStorage.setItem(LOCAL_STORAGE_KEYS.USERS, JSON.stringify(users));
+
+            currentUser = newUser;
+            localStorage.setItem(LOCAL_STORAGE_KEYS.CURRENT_USER, JSON.stringify(currentUser));
+
+            showNotification('Регистрация успешна! Добро пожаловать!', 'success');
+            showMobileApp();
+
+            // Обновляем статистику кланов
+            updateClanLeaderboard();
+        }
+
+        function updateUserUI() {
+            if (!currentUser) return;
+
+            // Обновляем баланс
+            const balanceElements = document.querySelectorAll('#mobile-user-balance, #mobile-header-balance, #mobile-shop-balance');
+            balanceElements.forEach(el => {
+                if (el) el.textContent = `${currentUser.balance} C`;
+            });
+
+            // Обновляем профиль
+            const profileAvatar = document.getElementById('mobile-profile-avatar');
+            const profileName = document.getElementById('mobile-profile-name');
+            const profileUsername = document.getElementById('mobile-profile-username');
+            const profileClan = document.getElementById('mobile-profile-clan');
+            const profileBalance = document.getElementById('mobile-profile-balance');
+
+            if (profileAvatar) profileAvatar.textContent = currentUser.clan || '🤠';
+            if (profileName) {
+                const fullName = `${currentUser.firstName || ''} ${currentUser.lastName || ''}`.trim();
+                profileName.textContent = fullName || currentUser.username;
+            }
+            if (profileUsername) profileUsername.textContent = currentUser.username;
+            if (profileClan) profileClan.textContent = currentUser.clan || '🤠';
+            if (profileBalance) profileBalance.textContent = `${currentUser.balance} C`;
+
+            // Обновляем аватар в создании поста
+            const userAvatar = document.getElementById('mobile-user-avatar');
+            const userName = document.getElementById('mobile-user-name');
+
+            if (userAvatar) userAvatar.textContent = currentUser.clan || '🤠';
+            if (userName) {
+                const fullName = `${currentUser.firstName || ''} ${currentUser.lastName || ''}`.trim();
+                userName.textContent = fullName || currentUser.username;
+            }
+
+            // Обновляем статистику
+            updateProfileStats();
+
+            // Загружаем витрину и инвентарь
+            loadShowcase();
+            loadInventory();
+            loadUserPosts();
+        }
+
+        function updateProfileStats() {
+            if (!currentUser) return;
+
+            // Считаем друзей
+            const friendRequests = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.FRIEND_REQUESTS)) || [];
+            const friendships = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.FRIENDSHIPS)) || [];
+            const userFriends = friendships.filter(f => f.userId1 === currentUser.id || f.userId2 === currentUser.id);
+
+            // Считаем посты
+            const posts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.POSTS)) || [];
+            const userPosts = posts.filter(p => p.userId === currentUser.id);
+
+            // Считаем подарки
+            const giftsCount = currentUser.inventory ? currentUser.inventory.length : 0;
+
+            // Обновляем счетчики
+            const friendsCount = document.getElementById('mobile-friends-count');
+            const postsCount = document.getElementById('mobile-posts-count');
+            const giftsCountEl = document.getElementById('mobile-gifts-count');
+
+            if (friendsCount) friendsCount.textContent = userFriends.length;
+            if (postsCount) postsCount.textContent = userPosts.length;
+            if (giftsCountEl) giftsCountEl.textContent = giftsCount;
+        }
+
+        function switchSection(section) {
+            console.log("🔀 Переключение на секцию:", section);
+
+            // Обновляем активную секцию
+            state.currentSection = section;
+
+            // Обновляем навигацию
+            document.querySelectorAll('.section-content').forEach(el => {
+                el.classList.remove('section-active');
+            });
+
+            document.querySelectorAll('.mobile-bottom-nav-btn').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Показываем нужную секцию
+            const sectionElement = document.getElementById(`mobile-${section}-content`);
+            if (sectionElement) {
+                sectionElement.classList.add('section-active');
+            }
+
+            // Обновляем навигационные кнопки
+            const navBtn = document.querySelector(`[data-section="${section}"]`);
+            if (navBtn && navBtn.classList.contains('mobile-bottom-nav-btn')) {
+                navBtn.classList.add('active');
+            }
+
+            // Обновляем заголовок
+            const currentSectionEl = document.getElementById('mobile-current-section');
+            const sectionDescription = document.getElementById('mobile-section-description');
+
+            if (currentSectionEl && sectionDescription) {
+                const sections = {
+                    'feed': { title: 'Лента', desc: 'Последние обновления' },
+                    'messenger': { title: 'Мессенджер', desc: 'Ваши сообщения' },
+                    'profile': { title: 'Профиль', desc: 'Ваш аккаунт' },
+                    'friends': { title: 'Друзья', desc: 'Найдите новых друзей' },
+                    'shop': { title: 'Магазин', desc: 'Купите подарки' },
+                    'transfers': { title: 'Переводы', desc: 'Отправляйте валюту' },
+                    'admin': { title: 'Админ-панель', desc: 'Управление системой' }
+                };
+
+                const sectionInfo = sections[section] || { title: section, desc: '' };
+                currentSectionEl.textContent = sectionInfo.title;
+                sectionDescription.textContent = sectionInfo.desc;
+            }
+
+            // Скрываем сайдбар если открыт
+            const sidebar = document.getElementById('mobile-sidebar');
+            const sidebarOverlay = document.getElementById('mobile-sidebar-overlay');
+            if (sidebar && sidebarOverlay) {
+                sidebar.classList.remove('open');
+                sidebarOverlay.classList.remove('open');
+            }
+
+            // Загружаем данные для секции
+            switch(section) {
+                case 'feed':
+                    loadFeed();
+                    break;
+                case 'messenger':
+                    loadChats();
+                    break;
+                case 'profile':
+                    updateUserUI();
+                    break;
+                case 'friends':
+                    loadFriends();
+                    break;
+                case 'shop':
+                    updateShop();
+                    break;
+                case 'transfers':
+                    loadTransfersHistory();
+                    break;
+                case 'admin':
+                    // Админ панель уже загружена
+                    break;
+            }
+        }
+
+        // ===========================================
+        // ФУНКЦИИ ЛЕНТЫ И ПОСТОВ
+        // ===========================================
+        function loadFeed() {
+            const postsContainer = document.getElementById('mobile-posts-container');
+            if (!postsContainer) return;
+
+            const posts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.POSTS)) || [];
+            const users = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.USERS)) || [];
+
+            if (posts.length === 0) {
+                postsContainer.innerHTML = `
+                    <div class="text-center py-8">
+                        <div class="text-4xl mb-4">🤠</div>
+                        <h3 class="text-lg font-bold mb-2">Лента пуста</h3>
+                        <p class="text-gray-400">Будьте первым, кто опубликует пост!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Сортируем посты по дате (новые сначала)
+            const sortedPosts = [...posts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            let postsHTML = '';
+            sortedPosts.forEach(post => {
+                const user = users.find(u => u.id === post.userId) || { username: 'Неизвестный', clan: '🤠' };
+                const isLiked = currentUser && post.likes && post.likes.includes(currentUser.id);
+                const likesCount = post.likesCount || (post.likes ? post.likes.length : 0);
+                const commentsCount = post.commentsCount || (post.comments ? post.comments.length : 0);
+
+                postsHTML += `
+                    <div class="glassmorphism rounded-2xl p-4 mb-4 fade-in">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center">
+                                ${user.clan || '🤠'}
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-bold text-sm">${user.firstName || ''} ${user.lastName || ''} ${user.username}</div>
+                                <div class="text-xs text-gray-400">${formatDate(post.createdAt)}</div>
+                            </div>
+                            <div class="text-xs px-2 py-1 bg-slate-800 rounded-full">${user.clan || '🤠'}</div>
+                        </div>
+
+                        <p class="mb-3 whitespace-pre-line">${post.content}</p>
+
+                        ${post.media && post.media.length > 0 ? `
+                            <div class="mb-3">
+                                <img src="${post.media[0]}" alt="Пост" class="post-image" onclick="viewImage('${post.media[0]}')">
+                            </div>
+                        ` : ''}
+
+                        <div class="flex justify-between pt-3 border-t border-slate-700">
+                            <button class="like-btn flex items-center space-x-1.5 ${isLiked ? 'text-red-500' : 'text-gray-400'}" data-post-id="${post.id}">
+                                <i class="${isLiked ? 'fas' : 'far'} fa-heart"></i>
+                                <span>${likesCount}</span>
+                            </button>
+                            <button class="comments-btn flex items-center space-x-1.5 text-gray-400" data-post-id="${post.id}">
+                                <i class="far fa-comment"></i>
+                                <span>${commentsCount}</span>
+                            </button>
+                            <button class="flex items-center space-x-1.5 text-gray-400">
+                                <i class="far fa-share-square"></i>
+                                <span>Поделиться</span>
+                            </button>
+                        </div>
+
+                        <div class="mt-3 pt-3 border-t border-slate-700/50">
+                            <div class="flex space-x-2">
+                                <input type="text" id="comment-input-${post.id}"
+                                       class="flex-1 bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                       placeholder="Напишите комментарий...">
+                                <button onclick="addComment(${post.id})" class="btn-primary px-3 rounded-xl text-sm">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            postsContainer.innerHTML = postsHTML;
+        }
+
+        function createPost() {
+            if (!currentUser) {
+                showNotification('Войдите в аккаунт чтобы публиковать посты', 'error');
+                return;
+            }
+
+            const content = document.getElementById('mobile-post-content').value.trim();
+
+            if (!content && selectedMedia.length === 0) {
+                showNotification('Введите текст или добавьте медиа', 'error');
+                return;
+            }
+
+            const posts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.POSTS)) || [];
+            const newPost = {
+                id: Date.now(),
+                userId: currentUser.id,
+                username: currentUser.username,
+                userClan: currentUser.clan,
+                content: content,
+                media: selectedMedia,
+                likes: [],
+                comments: [],
+                likesCount: 0,
+                commentsCount: 0,
+                createdAt: new Date().toISOString()
+            };
+
+            posts.push(newPost);
+            localStorage.setItem(LOCAL_STORAGE_KEYS.POSTS, JSON.stringify(posts));
+
+            // Очищаем форму
+            document.getElementById('mobile-post-content').value = '';
+            selectedMedia = [];
+            document.getElementById('mobile-media-preview').innerHTML = '';
+            document.getElementById('mobile-media-preview').classList.add('hidden');
+
+            showNotification('Пост опубликован!', 'success');
+            loadFeed();
+
+            // Обновляем статистику пользователя
+            updateProfileStats();
+        }
+
+        function handleMediaUpload(event) {
+            const files = event.target.files;
+            if (!files.length) return;
+
+            const previewContainer = document.getElementById('mobile-media-preview');
+            previewContainer.innerHTML = '';
+
+            for (let i = 0; i < Math.min(files.length, 6); i++) {
+                const file = files[i];
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const url = e.target.result;
+                    selectedMedia.push(url);
+
+                    const preview = document.createElement('div');
+                    preview.className = 'relative';
+                    preview.innerHTML = `
+                        <img src="${url}" class="w-full h-24 object-cover rounded-lg">
+                        <button type="button" onclick="removeMedia(${selectedMedia.length - 1})"
+                                class="absolute top-1 right-1 w-6 h-6 bg-red-600 rounded-full flex items-center justify-center text-xs">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    previewContainer.appendChild(preview);
+                };
+
+                reader.readAsDataURL(file);
+            }
+
+            previewContainer.classList.remove('hidden');
+        }
+
+        function removeMedia(index) {
+            selectedMedia.splice(index, 1);
+            const previewContainer = document.getElementById('mobile-media-preview');
+            previewContainer.innerHTML = '';
+
+            selectedMedia.forEach((url, i) => {
+                const preview = document.createElement('div');
+                preview.className = 'relative';
+                preview.innerHTML = `
+                    <img src="${url}" class="w-full h-24 object-cover rounded-lg">
+                    <button type="button" onclick="removeMedia(${i})"
+                            class="absolute top-1 right-1 w-6 h-6 bg-red-600 rounded-full flex items-center justify-center text-xs">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                previewContainer.appendChild(preview);
+            });
+
+            if (selectedMedia.length === 0) {
+                previewContainer.classList.add('hidden');
+            }
+        }
+
+        // ===========================================
+        // ФУНКЦИИ ЛАЙКОВ И КОММЕНТАРИЕВ
+        // ===========================================
+        function toggleLike(postId) {
+            if (!currentUser) {
+                showNotification('Войдите в аккаунт чтобы ставить лайки', 'error');
+                return;
+            }
+
+            console.log("❤️ Пользователь ставит/убирает лайк на пост:", postId);
+
+            // Получаем все посты
+            let posts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.POSTS)) || [];
+            const postIndex = posts.findIndex(p => p.id === postId);
+
+            if (postIndex === -1) {
+                console.log("❌ Пост не найден");
+                return;
+            }
+
+            const post = posts[postIndex];
+            const likeIndex = post.likes ? post.likes.indexOf(currentUser.id) : -1;
+
+            if (likeIndex === -1) {
+                // Добавляем лайк
+                if (!post.likes) post.likes = [];
+                post.likes.push(currentUser.id);
+                post.likesCount = (post.likesCount || 0) + 1;
+                console.log("✅ Лайк добавлен");
+
+                // Анимация лайка
+                const likeBtn = document.querySelector(`.like-btn[data-post-id="${postId}"] i`);
+                if (likeBtn) {
+                    likeBtn.classList.remove('far');
+                    likeBtn.classList.add('fas');
+                    likeBtn.parentElement.classList.add('text-red-500');
+                    likeBtn.parentElement.classList.remove('text-gray-400');
+
+                    // Анимация
+                    likeBtn.classList.add('like-animation');
+                    setTimeout(() => {
+                        likeBtn.classList.remove('like-animation');
+                    }, 600);
+                }
+            } else {
+                // Убираем лайк
+                post.likes.splice(likeIndex, 1);
+                post.likesCount = Math.max(0, (post.likesCount || 1) - 1);
+                console.log("❌ Лайк убран");
+
+                // Обновляем кнопку
+                const likeBtn = document.querySelector(`.like-btn[data-post-id="${postId}"] i`);
+                if (likeBtn) {
+                    likeBtn.classList.remove('fas');
+                    likeBtn.classList.add('far');
+                    likeBtn.parentElement.classList.remove('text-red-500');
+                    likeBtn.parentElement.classList.add('text-gray-400');
+                }
+            }
+
+            // Сохраняем изменения
+            posts[postIndex] = post;
+            localStorage.setItem(LOCAL_STORAGE_KEYS.POSTS, JSON.stringify(posts));
+
+            // Обновляем счетчик лайков
+            const likeCountElement = document.querySelector(`.like-btn[data-post-id="${postId}"] span`);
+            if (likeCountElement) {
+                likeCountElement.textContent = post.likesCount;
+            }
+
+            // Обновляем статистику кланов
+            updateClanLeaderboard();
+        }
+
+        function addComment(postId) {
+            if (!currentUser) {
+                showNotification('Войдите в аккаунт чтобы оставлять комментарии', 'error');
+                return;
+            }
+
+            const commentInput = document.getElementById(`comment-input-${postId}`);
+            if (!commentInput) return;
+
+            const commentText = commentInput.value.trim();
+            if (!commentText) {
+                showNotification('Введите текст комментария', 'error');
+                return;
+            }
+
+            console.log("💬 Добавление комментария к посту:", postId);
+
+            // Получаем все посты
+            let posts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.POSTS)) || [];
+            const postIndex = posts.findIndex(p => p.id === postId);
+
+            if (postIndex === -1) {
+                console.log("❌ Пост не найден");
+                return;
+            }
+
+            const post = posts[postIndex];
+
+            // Создаем комментарий
+            const newComment = {
+                id: Date.now(),
+                userId: currentUser.id,
+                username: currentUser.username,
+                userClan: currentUser.clan,
+                content: commentText,
+                createdAt: new Date().toISOString()
+            };
+
+            // Добавляем комментарий к посту
+            if (!post.comments) {
+                post.comments = [];
+            }
+            post.comments.push(newComment);
+            post.commentsCount = (post.commentsCount || 0) + 1;
+
+            // Сохраняем изменения
+            posts[postIndex] = post;
+            localStorage.setItem(LOCAL_STORAGE_KEYS.POSTS, JSON.stringify(posts));
+
+            // Очищаем поле ввода
+            commentInput.value = '';
+
+            // Обновляем счетчик комментариев
+            const commentCountElement = document.querySelector(`.comments-btn[data-post-id="${postId}"] span`);
+            if (commentCountElement) {
+                commentCountElement.textContent = post.commentsCount;
+            }
+
+            // Показываем комментарий
+            showCommentsModal(postId);
+
+            showNotification('Комментарий добавлен!', 'success');
+        }
+
+        function showCommentsModal(postId) {
+            const posts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.POSTS)) || [];
+            const post = posts.find(p => p.id === postId);
+            const users = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.USERS)) || [];
+
+            if (!post) return;
+
+            let commentsHTML = '';
+            if (post.comments && post.comments.length > 0) {
+                // Сортируем комментарии по дате (новые сверху)
+                const sortedComments = [...post.comments].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+                commentsHTML = sortedComments.map(comment => {
+                    const user = users.find(u => u.id === comment.userId) || { username: comment.username, clan: comment.userClan };
+                    return `
+                        <div class="mb-3 p-3 bg-slate-800/50 rounded-xl">
+                            <div class="flex items-center space-x-2 mb-1">
+                                <div class="w-6 h-6 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center text-xs">
+                                    ${user.clan || '🤠'}
+                                </div>
+                                <div class="font-bold text-xs">${user.username}</div>
+                                <div class="text-xs text-gray-400">${formatDate(comment.createdAt)}</div>
+                            </div>
+                            <p class="text-sm">${comment.content}</p>
+                        </div>
+                    `;
+                }).join('');
+            } else {
+                commentsHTML = '<p class="text-gray-400 text-center py-4">Пока нет комментариев</p>';
+            }
+
+            const modalHTML = `
+                <div class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
+                    <div class="bg-slate-900 rounded-2xl w-full max-w-md max-h-[80vh] flex flex-col">
+                        <div class="flex justify-between items-center p-4 border-b border-slate-700">
+                            <h3 class="text-lg font-bold">Комментарии (${post.commentsCount || 0})</h3>
+                            <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+
+                        <div class="flex-1 overflow-y-auto p-4">
+                            ${commentsHTML}
+                        </div>
+
+                        <div class="p-4 border-t border-slate-700">
+                            <div class="flex space-x-2">
+                                <input type="text" id="modal-comment-input-${postId}"
+                                       class="flex-1 bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                       placeholder="Напишите комментарий...">
+                                <button onclick="addCommentFromModal(${postId})" class="btn-primary px-4 rounded-xl">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const modalsContainer = document.getElementById('modals-container');
+            if (modalsContainer) {
+                modalsContainer.innerHTML = modalHTML;
+            }
+        }
+
+        function addCommentFromModal(postId) {
+            const commentInput = document.getElementById(`modal-comment-input-${postId}`);
+            if (!commentInput) return;
+
+            const commentText = commentInput.value.trim();
+            if (!commentText) {
+                showNotification('Введите текст комментария', 'error');
+                return;
+            }
+
+            addComment(postId);
+            commentInput.value = '';
+        }
+
+        function closeModal() {
+            const modalsContainer = document.getElementById('modals-container');
+            if (modalsContainer) {
+                modalsContainer.innerHTML = '';
+            }
+        }
+
+        // ===========================================
+        // ФУНКЦИИ СТАТИСТИКИ КЛАНОВ
+        // ===========================================
+        function updateClanLeaderboard() {
+            const leaderboardContainer = document.getElementById('mobile-clan-leaderboard');
+            if (!leaderboardContainer) return;
+
+            // Получаем всех пользователей
+            const users = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.USERS)) || [];
+
+            // Собираем статистику по кланам
+            const clanStats = {};
+            const clanEmojis = {
+                '🦁': 'Львы',
+                '🦅': 'Орлы',
+                '🐺': 'Волки',
+                '🐻': 'Медведи',
+                '🦊': 'Лисы',
+                '🐯': 'Тигры',
+                '🦉': 'Совы',
+                '🐍': 'Змеи',
+                '👑': 'Короли'
+            };
+
+            // Инициализируем кланы
+            Object.keys(clanEmojis).forEach(clan => {
+                clanStats[clan] = {
+                    emoji: clan,
+                    name: clanEmojis[clan],
+                    members: 0,
+                    totalBalance: 0,
+                    posts: 0,
+                    likes: 0
+                };
+            });
+
+            // Считаем статистику
+            users.forEach(user => {
+                const clan = user.clan || '🤠';
+                if (clanStats[clan]) {
+                    clanStats[clan].members++;
+                    clanStats[clan].totalBalance += user.balance || 0;
+
+                    // Считаем посты пользователя
+                    const posts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.POSTS)) || [];
+                    const userPosts = posts.filter(p => p.userId === user.id);
+                    clanStats[clan].posts += userPosts.length;
+
+                    // Считаем лайки пользователя
+                    userPosts.forEach(post => {
+                        clanStats[clan].likes += post.likesCount || 0;
+                    });
+                }
+            });
+
+            // Сортируем кланы по общему балансу
+            const sortedClans = Object.values(clanStats)
+                .filter(clan => clan.members > 0)
+                .sort((a, b) => b.totalBalance - a.totalBalance)
+                .slice(0, 5); // Только топ 5
+
+            if (sortedClans.length === 0) {
+                leaderboardContainer.innerHTML = '<p class="text-gray-400 text-sm">Нет данных о кланах</p>';
+                return;
+            }
+
+            let leaderboardHTML = '';
+            sortedClans.forEach((clan, index) => {
+                const avgBalance = clan.members > 0 ? Math.round(clan.totalBalance / clan.members) : 0;
+
+                leaderboardHTML += `
+                    <div class="flex items-center justify-between p-2 hover:bg-slate-700/30 rounded-lg transition">
+                        <div class="flex items-center space-x-2">
+                            <div class="text-lg">${clan.emoji}</div>
+                            <div>
+                                <div class="text-xs font-medium">${clan.name}</div>
+                                <div class="text-xs text-gray-400">${clan.members} участников</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm font-bold text-yellow-300">${clan.totalBalance.toLocaleString()} C</div>
+                            <div class="text-xs text-gray-400">${avgBalance} C/чел</div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            leaderboardContainer.innerHTML = leaderboardHTML;
+        }
+
+        // ===========================================
+        // ФУНКЦИИ ПРОФИЛЯ
+        // ===========================================
+        function loadShowcase() {
+            if (!currentUser) return;
+
+            const showcaseContainer = document.getElementById('mobile-profile-showcase');
+            const noShowcase = document.getElementById('mobile-no-showcase');
+
+            if (!showcaseContainer || !noShowcase) return;
+
+            if (!currentUser.showcase || currentUser.showcase.length === 0) {
+                showcaseContainer.classList.add('hidden');
+                noShowcase.classList.remove('hidden');
+                return;
+            }
+
+            showcaseContainer.classList.remove('hidden');
+            noShowcase.classList.add('hidden');
+
+            let showcaseHTML = '';
+            currentUser.showcase.forEach((giftId, index) => {
+                const gifts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.GIFTS)) || [];
+                const gift = gifts.find(g => g.id === giftId);
+
+                if (gift) {
+                    showcaseHTML += `
+                        <div class="gift-in-showcase bg-slate-800/50 rounded-xl p-3 text-center">
+                            <div class="text-2xl mb-1">${gift.emoji}</div>
+                            <div class="text-xs font-medium line-clamp-1">${gift.name}</div>
+                        </div>
+                    `;
+                }
+            });
+
+            showcaseContainer.innerHTML = showcaseHTML;
+        }
+
+        function loadInventory() {
+            if (!currentUser) return;
+
+            const inventoryContainer = document.getElementById('mobile-inventory-items');
+            if (!inventoryContainer) return;
+
+            if (!currentUser.inventory || currentUser.inventory.length === 0) {
+                inventoryContainer.innerHTML = '<p class="text-gray-400 text-center py-4">Инвентарь пуст</p>';
+                return;
+            }
+
+            const gifts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.GIFTS)) || [];
+            let inventoryHTML = '';
+
+            // Группируем подарки по типу
+            const giftCounts = {};
+            currentUser.inventory.forEach(giftId => {
+                giftCounts[giftId] = (giftCounts[giftId] || 0) + 1;
+            });
+
+            Object.entries(giftCounts).forEach(([giftId, count]) => {
+                const gift = gifts.find(g => g.id === parseInt(giftId));
+                if (gift) {
+                    inventoryHTML += `
+                        <div class="flex items-center justify-between p-2 hover:bg-slate-700/30 rounded-lg transition">
+                            <div class="flex items-center space-x-3">
+                                <div class="text-xl">${gift.emoji}</div>
+                                <div>
+                                    <div class="text-sm font-medium">${gift.name}</div>
+                                    <div class="text-xs text-gray-400">${count} шт.</div>
+                                </div>
+                            </div>
+                            <button onclick="addToShowcase(${gift.id})" class="text-xs bg-blue-600 hover:bg-blue-700 px-2 py-1 rounded-lg">
+                                На витрину
+                            </button>
+                        </div>
+                    `;
+                }
+            });
+
+            inventoryContainer.innerHTML = inventoryHTML;
+        }
+
+        function addToShowcase(giftId) {
+            if (!currentUser) return;
+
+            if (!currentUser.showcase) {
+                currentUser.showcase = [];
+            }
+
+            // Проверяем, есть ли уже этот подарок на витрине
+            if (currentUser.showcase.includes(giftId)) {
+                showNotification('Этот подарок уже на витрине', 'error');
+                return;
+            }
+
+            // Проверяем, есть ли такой подарок в инвентаре
+            if (!currentUser.inventory || !currentUser.inventory.includes(giftId)) {
+                showNotification('У вас нет этого подарка в инвентаре', 'error');
+                return;
+            }
+
+            // Ограничиваем витрину 4 подарками
+            if (currentUser.showcase.length >= 4) {
+                showNotification('На витрине может быть только 4 подарка', 'error');
+                return;
+            }
+
+            currentUser.showcase.push(giftId);
+            saveCurrentUser();
+            loadShowcase();
+
+            showNotification('Подарок добавлен на витрину!', 'success');
+        }
+
+        function loadUserPosts() {
+            if (!currentUser) return;
+
+            const postsContainer = document.getElementById('mobile-profile-posts');
+            if (!postsContainer) return;
+
+            const posts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.POSTS)) || [];
+            const userPosts = posts.filter(p => p.userId === currentUser.id)
+                                   .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                                   .slice(0, 5); // Только последние 5 постов
+
+            if (userPosts.length === 0) {
+                postsContainer.innerHTML = '<p class="text-gray-400 text-center py-4">Вы еще не публиковали посты</p>';
+                return;
+            }
+
+            let postsHTML = '';
+            userPosts.forEach(post => {
+                const likesCount = post.likesCount || 0;
+                const commentsCount = post.commentsCount || 0;
+
+                postsHTML += `
+                    <div class="bg-slate-800/50 rounded-xl p-3">
+                        <div class="flex justify-between items-center mb-2">
+                            <div class="text-sm text-gray-400">${formatDate(post.createdAt)}</div>
+                            <div class="flex items-center space-x-3 text-xs">
+                                <span class="flex items-center space-x-1">
+                                    <i class="fas fa-heart text-red-400"></i>
+                                    <span>${likesCount}</span>
+                                </span>
+                                <span class="flex items-center space-x-1">
+                                    <i class="fas fa-comment text-blue-400"></i>
+                                    <span>${commentsCount}</span>
+                                </span>
+                            </div>
+                        </div>
+                        <p class="text-sm line-clamp-3">${post.content}</p>
+                    </div>
+                `;
+            });
+
+            postsContainer.innerHTML = postsHTML;
+        }
+
+        // ===========================================
+        // ФУНКЦИИ ДРУЗЕЙ
+        // ===========================================
+        function loadFriends() {
+            loadFriendsList();
+            loadFriendRequests();
+        }
+
+        function loadFriendsList() {
+            if (!currentUser) return;
+
+            const friendsList = document.getElementById('mobile-friends-list');
+            if (!friendsList) return;
+
+            const friendships = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.FRIENDSHIPS)) || [];
+            const users = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.USERS)) || [];
+
+            const userFriends = friendships.filter(f =>
+                f.userId1 === currentUser.id || f.userId2 === currentUser.id
+            );
+
+            if (userFriends.length === 0) {
+                friendsList.innerHTML = '<p class="text-gray-400 text-center py-4">У вас пока нет друзей</p>';
+                return;
+            }
+
+            let friendsHTML = '';
+            userFriends.forEach(friendship => {
+                const friendId = friendship.userId1 === currentUser.id ? friendship.userId2 : friendship.userId1;
+                const friend = users.find(u => u.id === friendId);
+
+                if (friend) {
+                    friendsHTML += `
+                        <div class="flex items-center justify-between p-2 hover:bg-slate-700/30 rounded-lg transition">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center">
+                                    ${friend.clan || '🤠'}
+                                </div>
+                                <div>
+                                    <div class="font-medium text-sm">${friend.username}</div>
+                                    <div class="text-xs text-gray-400">${friend.firstName || ''} ${friend.lastName || ''}</div>
+                                </div>
+                            </div>
+                            <button onclick="removeFriend(${friend.id})" class="text-xs bg-red-600 hover:bg-red-700 px-2 py-1 rounded-lg">
+                                Удалить
+                            </button>
+                        </div>
+                    `;
+                }
+            });
+
+            friendsList.innerHTML = friendsHTML;
+        }
+
+        function loadFriendRequests() {
+            if (!currentUser) return;
+
+            const requestsList = document.getElementById('mobile-friend-requests-list');
+            if (!requestsList) return;
+
+            const friendRequests = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.FRIEND_REQUESTS)) || [];
+            const users = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.USERS)) || [];
+
+            const incomingRequests = friendRequests.filter(req =>
+                req.toUserId === currentUser.id && req.status === 'pending'
+            );
+
+            if (incomingRequests.length === 0) {
+                requestsList.innerHTML = '<p class="text-gray-400 text-center py-4">Нет заявок в друзья</p>';
+                return;
+            }
+
+            let requestsHTML = '';
+            incomingRequests.forEach(request => {
+                const fromUser = users.find(u => u.id === request.fromUserId);
+
+                if (fromUser) {
+                    requestsHTML += `
+                        <div class="flex items-center justify-between p-2 hover:bg-slate-700/30 rounded-lg transition">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center">
+                                    ${fromUser.clan || '🤠'}
+                                </div>
+                                <div>
+                                    <div class="font-medium text-sm">${fromUser.username}</div>
+                                    <div class="text-xs text-gray-400">Хочет добавить вас в друзья</div>
+                                </div>
+                            </div>
+                            <div class="flex space-x-1">
+                                <button onclick="acceptFriendRequest(${request.id})" class="text-xs bg-green-600 hover:bg-green-700 px-2 py-1 rounded-lg">
+                                    Принять
+                                </button>
+                                <button onclick="rejectFriendRequest(${request.id})" class="text-xs bg-red-600 hover:bg-red-700 px-2 py-1 rounded-lg">
+                                    Отклонить
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            requestsList.innerHTML = requestsHTML;
+        }
+
+        function searchFriends() {
+            const searchInput = document.getElementById('mobile-search-friend-input');
+            if (!searchInput) return;
+
+            const query = searchInput.value.trim().toLowerCase();
+            if (!query) {
+                showNotification('Введите никнейм для поиска', 'error');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.USERS)) || [];
+            const filteredUsers = users.filter(u =>
+                u.username.toLowerCase().includes(query) &&
+                u.id !== currentUser.id
+            );
+
+            const searchResults = document.getElementById('mobile-search-results');
+            if (!searchResults) return;
+
+            if (filteredUsers.length === 0) {
+                searchResults.innerHTML = '<p class="text-gray-400 text-center py-4">Пользователи не найдены</p>';
+                searchResults.classList.remove('hidden');
+                return;
+            }
+
+            let resultsHTML = `
+                <div class="glassmorphism rounded-xl p-3">
+                    <h3 class="text-md font-bold mb-3 text-green-300">Результаты поиска</h3>
+                    <div class="space-y-2">
+            `;
+
+            filteredUsers.forEach(user => {
+                const friendRequests = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.FRIEND_REQUESTS)) || [];
+                const friendships = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.FRIENDSHIPS)) || [];
+
+                const isAlreadyFriend = friendships.some(f =>
+                    (f.userId1 === currentUser.id && f.userId2 === user.id) ||
+                    (f.userId1 === user.id && f.userId2 === currentUser.id)
+                );
+
+                const hasPendingRequest = friendRequests.some(req =>
+                    ((req.fromUserId === currentUser.id && req.toUserId === user.id) ||
+                     (req.fromUserId === user.id && req.toUserId === currentUser.id)) &&
+                    req.status === 'pending'
+                );
+
+                let buttonHTML = '';
+                if (isAlreadyFriend) {
+                    buttonHTML = '<span class="text-xs text-gray-400">Уже в друзьях</span>';
+                } else if (hasPendingRequest) {
+                    buttonHTML = '<span class="text-xs text-yellow-400">Запрос отправлен</span>';
+                } else {
+                    buttonHTML = `<button onclick="sendFriendRequest(${user.id})" class="text-xs bg-blue-600 hover:bg-blue-700 px-2 py-1 rounded-lg">
+                                    Добавить
+                                  </button>`;
+                }
+
+                resultsHTML += `
+                    <div class="flex items-center justify-between p-2 hover:bg-slate-700/30 rounded-lg transition">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center">
+                                ${user.clan || '🤠'}
+                            </div>
+                            <div>
+                                <div class="font-medium text-sm">${user.username}</div>
+                                <div class="text-xs text-gray-400">${user.firstName || ''} ${user.lastName || ''}</div>
+                            </div>
+                        </div>
+                        ${buttonHTML}
+                    </div>
+                `;
+            });
+
+            resultsHTML += '</div></div>';
+            searchResults.innerHTML = resultsHTML;
+            searchResults.classList.remove('hidden');
+        }
+
+        function sendFriendRequest(toUserId) {
+            if (!currentUser) return;
+
+            const friendRequests = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.FRIEND_REQUESTS)) || [];
+
+            // Проверяем, не отправлен ли уже запрос
+            const existingRequest = friendRequests.find(req =>
+                req.fromUserId === currentUser.id &&
+                req.toUserId === toUserId &&
+                req.status === 'pending'
+            );
+
+            if (existingRequest) {
+                showNotification('Запрос уже отправлен', 'error');
+                return;
+            }
+
+            const newRequest = {
+                id: Date.now(),
+                fromUserId: currentUser.id,
+                toUserId: toUserId,
+                status: 'pending',
+                createdAt: new Date().toISOString()
+            };
+
+            friendRequests.push(newRequest);
+            localStorage.setItem(LOCAL_STORAGE_KEYS.FRIEND_REQUESTS, JSON.stringify(friendRequests));
+
+            showNotification('Запрос в друзья отправлен!', 'success');
+            searchFriends(); // Обновляем результаты поиска
+        }
+
+        function acceptFriendRequest(requestId) {
+            const friendRequests = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.FRIEND_REQUESTS)) || [];
+            const friendships = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.FRIENDSHIPS)) || [];
+
+            const requestIndex = friendRequests.findIndex(req => req.id === requestId);
+            if (requestIndex === -1) return;
+
+            const request = friendRequests[requestIndex];
+
+            // Обновляем статус запроса
+            request.status = 'accepted';
+            friendRequests[requestIndex] = request;
+
+            // Создаем дружбу
+            const newFriendship = {
+                id: Date.now(),
+                userId1: request.fromUserId,
+                userId2: request.toUserId,
+                createdAt: new Date().toISOString()
+            };
+
+            friendships.push(newFriendship);
+
+            // Сохраняем изменения
+            localStorage.setItem(LOCAL_STORAGE_KEYS.FRIEND_REQUESTS, JSON.stringify(friendRequests));
+            localStorage.setItem(LOCAL_STORAGE_KEYS.FRIENDSHIPS, JSON.stringify(friendships));
+
+            showNotification('Запрос в друзья принят!', 'success');
+            loadFriendRequests();
+            loadFriendsList();
+            updateProfileStats();
+        }
+
+        function rejectFriendRequest(requestId) {
+            const friendRequests = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.FRIEND_REQUESTS)) || [];
+
+            const requestIndex = friendRequests.findIndex(req => req.id === requestId);
+            if (requestIndex === -1) return;
+
+            // Удаляем запрос
+            friendRequests.splice(requestIndex, 1);
+            localStorage.setItem(LOCAL_STORAGE_KEYS.FRIEND_REQUESTS, JSON.stringify(friendRequests));
+
+            showNotification('Запрос в друзья отклонен', 'info');
+            loadFriendRequests();
+        }
+
+        function removeFriend(friendId) {
+            if (!currentUser) return;
+
+            const friendships = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.FRIENDSHIPS)) || [];
+            const friendRequests = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.FRIEND_REQUESTS)) || [];
+
+            // Удаляем дружбу
+            const friendshipIndex = friendships.findIndex(f =>
+                (f.userId1 === currentUser.id && f.userId2 === friendId) ||
+                (f.userId1 === friendId && f.userId2 === currentUser.id)
+            );
+
+            if (friendshipIndex !== -1) {
+                friendships.splice(friendshipIndex, 1);
+                localStorage.setItem(LOCAL_STORAGE_KEYS.FRIENDSHIPS, JSON.stringify(friendships));
+            }
+
+            // Удаляем связанные запросы
+            const updatedRequests = friendRequests.filter(req =>
+                !((req.fromUserId === currentUser.id && req.toUserId === friendId) ||
+                  (req.fromUserId === friendId && req.toUserId === currentUser.id))
+            );
+
+            localStorage.setItem(LOCAL_STORAGE_KEYS.FRIEND_REQUESTS, JSON.stringify(updatedRequests));
+
+            showNotification('Друг удален', 'info');
+            loadFriendsList();
+            updateProfileStats();
+        }
+
+        // ===========================================
+        // ФУНКЦИИ МАГАЗИНА
+        // ===========================================
+        function updateShop() {
+            const shopContainer = document.getElementById('mobile-gifts-shop');
+            if (!shopContainer) return;
+
+            const gifts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.GIFTS)) || DEFAULT_GIFTS;
+
+            let shopHTML = '';
+            gifts.forEach(gift => {
+                shopHTML += `
+                    <div class="glassmorphism rounded-xl p-4 flex flex-col items-center text-center">
+                        <div class="text-4xl mb-2">${gift.emoji}</div>
+                        <h4 class="font-bold mb-1">${gift.name}</h4>
+                        <p class="text-xs text-gray-400 mb-3">${gift.description}</p>
+                        <div class="mt-auto w-full">
+                            <div class="text-lg font-bold text-yellow-300 mb-3">${gift.price} C</div>
+                            <button onclick="buyGift(${gift.id})"
+                                    class="w-full btn-primary py-2 rounded-xl text-sm font-bold tap-highlight">
+                                Купить
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            shopContainer.innerHTML = shopHTML;
+        }
+
+        function buyGift(giftId) {
+            if (!currentUser) {
+                showNotification('Войдите в аккаунт', 'error');
+                return;
+            }
+
+            const gifts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.GIFTS)) || DEFAULT_GIFTS;
+            const gift = gifts.find(g => g.id === giftId);
+
+            if (!gift) {
+                showNotification('Подарок не найден', 'error');
+                return;
+            }
+
+            if (currentUser.balance < gift.price) {
+                showNotification('Недостаточно средств', 'error');
+                return;
+            }
+
+            // Списываем деньги
+            currentUser.balance -= gift.price;
+
+            // Добавляем подарок в инвентарь
+            if (!currentUser.inventory) {
+                currentUser.inventory = [];
+            }
+            currentUser.inventory.push(giftId);
+
+            // Увеличиваем счетчик покупок
+            gift.purchases = (gift.purchases || 0) + 1;
+            const giftIndex = gifts.findIndex(g => g.id === giftId);
+            if (giftIndex !== -1) {
+                gifts[giftIndex] = gift;
+                localStorage.setItem(LOCAL_STORAGE_KEYS.GIFTS, JSON.stringify(gifts));
+            }
+
+            // Сохраняем пользователя
+            saveCurrentUser();
+
+            // Обновляем UI
+            updateUserUI();
+            updateShop();
+
+            showNotification(`Вы купили ${gift.name}!`, 'success');
+        }
+
+        // ===========================================
+        // ФУНКЦИИ ПЕРЕВОДОВ
+        // ===========================================
+        function makeTransfer() {
+            if (!currentUser) {
+                showNotification('Войдите в аккаунт', 'error');
+                return;
+            }
+
+            const toUsername = document.getElementById('mobile-transfer-to').value.trim();
+            const amount = parseInt(document.getElementById('mobile-transfer-amount').value);
+            const message = document.getElementById('mobile-transfer-message').value.trim();
+
+            if (!toUsername) {
+                showNotification('Введите никнейм получателя', 'error');
+                return;
+            }
+
+            if (!amount || amount <= 0) {
+                showNotification('Введите корректную сумму', 'error');
+                return;
+            }
+
+            if (amount > currentUser.balance) {
+                showNotification('Недостаточно средств', 'error');
+                return;
+            }
+
+            // Проверяем, не пытается ли пользователь отправить деньги себе
+            if (toUsername === currentUser.username) {
+                showNotification('Нельзя отправить деньги самому себе', 'error');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.USERS)) || [];
+            const toUser = users.find(u => u.username === toUsername);
+
+            if (!toUser) {
+                showNotification('Пользователь не найден', 'error');
+                return;
+            }
+
+            // Создаем транзакцию
+            const transactions = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.TRANSACTIONS)) || [];
+            const newTransaction = {
+                id: Date.now(),
+                fromUserId: currentUser.id,
+                fromUsername: currentUser.username,
+                toUserId: toUser.id,
+                toUsername: toUser.username,
+                amount: amount,
+                message: message,
+                createdAt: new Date().toISOString()
+            };
+
+            // Обновляем балансы
+            currentUser.balance -= amount;
+            toUser.balance += amount;
+
+            // Обновляем пользователей
+            const currentUserIndex = users.findIndex(u => u.id === currentUser.id);
+            const toUserIndex = users.findIndex(u => u.id === toUser.id);
+
+            if (currentUserIndex !== -1) users[currentUserIndex] = currentUser;
+            if (toUserIndex !== -1) users[toUserIndex] = toUser;
+
+            // Сохраняем изменения
+            transactions.push(newTransaction);
+            localStorage.setItem(LOCAL_STORAGE_KEYS.TRANSACTIONS, JSON.stringify(transactions));
+            localStorage.setItem(LOCAL_STORAGE_KEYS.USERS, JSON.stringify(users));
+            saveCurrentUser();
+
+            // Очищаем форму
+            document.getElementById('mobile-transfer-to').value = '';
+            document.getElementById('mobile-transfer-amount').value = '';
+            document.getElementById('mobile-transfer-message').value = '';
+
+            showNotification(`Перевод ${amount} C выполнен успешно!`, 'success');
+            updateUserUI();
+            loadTransfersHistory();
+            updateClanLeaderboard();
+        }
+
+        function loadTransfersHistory() {
+            const historyContainer = document.getElementById('mobile-transfers-history');
+            if (!historyContainer) return;
+
+            const transactions = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.TRANSACTIONS)) || [];
+            const userTransactions = transactions.filter(t =>
+                t.fromUserId === currentUser.id || t.toUserId === currentUser.id
+            ).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            if (userTransactions.length === 0) {
+                historyContainer.innerHTML = '<p class="text-gray-400 text-center py-4">Нет истории переводов</p>';
+                return;
+            }
+
+            let historyHTML = '';
+            userTransactions.forEach(transaction => {
+                const isSent = transaction.fromUserId === currentUser.id;
+                const otherUser = isSent ? transaction.toUsername : transaction.fromUsername;
+
+                historyHTML += `
+                    <div class="glassmorphism rounded-xl p-3">
+                        <div class="flex justify-between items-center mb-2">
+                            <div class="font-medium text-sm">${otherUser}</div>
+                            <div class="font-bold ${isSent ? 'text-red-400' : 'text-green-400'}">
+                                ${isSent ? '-' : '+'}${transaction.amount} C
+                            </div>
+                        </div>
+                        ${transaction.message ? `<div class="text-xs text-gray-400 mb-1">${transaction.message}</div>` : ''}
+                        <div class="text-xs text-gray-400">${formatDate(transaction.createdAt)}</div>
+                    </div>
+                `;
+            });
+
+            historyContainer.innerHTML = historyHTML;
+        }
+
+        // ===========================================
+        // ФУНКЦИИ АДМИН ПАНЕЛИ
+        // ===========================================
+        function adminSetBalance() {
+            if (!currentUser || !currentUser.isAdmin) {
+                showNotification('У вас нет прав администратора', 'error');
+                return;
+            }
+
+            const username = document.getElementById('mobile-admin-username').value.trim();
+            const balance = parseInt(document.getElementById('mobile-admin-balance').value);
+
+            if (!username) {
+                showNotification('Введите никнейм пользователя', 'error');
+                return;
+            }
+
+            if (!balance || balance < 0) {
+                showNotification('Введите корректную сумму', 'error');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.USERS)) || [];
+            const userIndex = users.findIndex(u => u.username === username);
+
+            if (userIndex === -1) {
+                showNotification('Пользователь не найден', 'error');
+                return;
+            }
+
+            // Обновляем баланс
+            users[userIndex].balance = balance;
+            localStorage.setItem(LOCAL_STORAGE_KEYS.USERS, JSON.stringify(users));
+
+            // Если это текущий пользователь, обновляем его данные
+            if (currentUser.username === username) {
+                currentUser.balance = balance;
+                saveCurrentUser();
+                updateUserUI();
+            }
+
+            // Очищаем поля
+            document.getElementById('mobile-admin-username').value = '';
+            document.getElementById('mobile-admin-balance').value = '';
+
+            showNotification(`Баланс пользователя ${username} установлен: ${balance} C`, 'success');
+            updateClanLeaderboard();
+        }
+
+        function adminDistributeToClan() {
+            if (!currentUser || !currentUser.isAdmin) {
+                showNotification('У вас нет прав администратора', 'error');
+                return;
+            }
+
+            const clan = document.getElementById('mobile-admin-clan').value;
+            const amount = parseInt(document.getElementById('mobile-admin-clan-amount').value);
+
+            if (!clan) {
+                showNotification('Выберите клан', 'error');
+                return;
+            }
+
+            if (!amount || amount <= 0) {
+                showNotification('Введите корректную сумму', 'error');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.USERS)) || [];
+            const clanMembers = users.filter(u => u.clan === clan);
+
+            if (clanMembers.length === 0) {
+                showNotification('В этом клане нет участников', 'error');
+                return;
+            }
+
+            // Обновляем баланс всех участников клана
+            clanMembers.forEach(member => {
+                member.balance += amount;
+            });
+
+            // Сохраняем изменения
+            localStorage.setItem(LOCAL_STORAGE_KEYS.USERS, JSON.stringify(users));
+
+            // Если текущий пользователь в этом клане, обновляем его данные
+            if (currentUser.clan === clan) {
+                currentUser.balance += amount;
+                saveCurrentUser();
+                updateUserUI();
+            }
+
+            // Очищаем поле суммы
+            document.getElementById('mobile-admin-clan-amount').value = '';
+
+            const totalAmount = amount * clanMembers.length;
+            showNotification(`Распределено ${amount} C каждому из ${clanMembers.length} участников клана ${clan}. Итого: ${totalAmount} C`, 'success');
+            updateClanLeaderboard();
+        }
+
+        // ===========================================
+        // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
+        // ===========================================
+        function saveCurrentUser() {
+            if (!currentUser) return;
+
+            // Обновляем пользователя в общем списке
+            const users = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.USERS)) || [];
+            const userIndex = users.findIndex(u => u.id === currentUser.id);
+
+            if (userIndex !== -1) {
+                users[userIndex] = currentUser;
+                localStorage.setItem(LOCAL_STORAGE_KEYS.USERS, JSON.stringify(users));
+            }
+
+            // Сохраняем текущего пользователя
+            localStorage.setItem(LOCAL_STORAGE_KEYS.CURRENT_USER, JSON.stringify(currentUser));
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMs / 3600000);
+            const diffDays = Math.floor(diffMs / 86400000);
+
+            if (diffMins < 1) {
+                return 'только что';
+            } else if (diffMins < 60) {
+                return `${diffMins} мин. назад`;
+            } else if (diffHours < 24) {
+                return `${diffHours} ч. назад`;
+            } else if (diffDays < 7) {
+                return `${diffDays} дн. назад`;
+            } else {
+                return date.toLocaleDateString('ru-RU', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                });
+            }
+        }
+
+        function showNotification(message, type = 'info') {
+            const colors = {
+                success: 'bg-green-600',
+                error: 'bg-red-600',
+                info: 'bg-blue-600',
+                warning: 'bg-yellow-600'
+            };
+
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 ${colors[type]} text-white px-4 py-3 rounded-xl shadow-lg z-50 max-w-sm slide-in-right`;
+            notification.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        function viewImage(url) {
+            const modalHTML = `
+                <div class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4" onclick="closeModal()">
+                    <img src="${url}" class="max-w-full max-h-full rounded-lg" onclick="event.stopPropagation()">
+                </div>
+            `;
+
+            const modalsContainer = document.getElementById('modals-container');
+            if (modalsContainer) {
+                modalsContainer.innerHTML = modalHTML;
+            }
+        }
+
+        // Экспортируем функции для глобального использования
+        window.toggleLike = toggleLike;
+        window.addComment = addComment;
+        window.addCommentFromModal = addCommentFromModal;
+        window.closeModal = closeModal;
+        window.viewImage = viewImage;
+        window.removeMedia = removeMedia;
+        window.addToShowcase = addToShowcase;
+        window.sendFriendRequest = sendFriendRequest;
+        window.acceptFriendRequest = acceptFriendRequest;
+        window.rejectFriendRequest = rejectFriendRequest;
+        window.removeFriend = removeFriend;
+        window.buyGift = buyGift;
+
+        console.log("🚀 Cowboy Messenger полностью загружен и готов к работе!");
+    </script>
+</body>
+</html>
